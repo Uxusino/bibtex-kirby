@@ -1,0 +1,2 @@
+# bibtex-kirby
+Bibtex miniprojekti.
