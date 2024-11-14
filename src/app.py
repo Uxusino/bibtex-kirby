@@ -1,11 +1,11 @@
 from flask import redirect, render_template, request, jsonify, flash
 from db_helper import reset_db
-from repositories.bibtex_repository import get_bibtexs, create_bibtex
+from repositories.bibtex_repository import bibtex_repository as repo
 from config import app, test_env
 
 @app.route("/")
 def index():
-    bibtexs = get_bibtexs()
+    bibtexs = repo.get_bibtexs()
     return render_template("index.html", bibtexs=bibtexs) 
 
 @app.route("/create_bibtex", methods=["POST"])
@@ -13,7 +13,7 @@ def bibtex_creation():
     content = request.form.get("content")
 
     try:
-        create_bibtex(content)
+        repo.create_bibtex(content)
         return redirect("/")
     except Exception as error:
         flash(str(error))

@@ -35,7 +35,10 @@ def setup_db():
   sql = text(
     f'CREATE TABLE "{table_name}" ('
     "  id SERIAL PRIMARY KEY, "
-    "  content TEXT NOT NULL"
+    "  label TEXT NOT NULL, "
+    "  creation_time TIMESTAMP, "
+    "  modified_time TIMESTAMP, "
+    "  data JSON "
     ")"
   )
 
