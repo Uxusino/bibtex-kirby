@@ -14,4 +14,4 @@ After adding a bibtex, there is one
     Go To  ${HOME_URL}
     Input Text  label  Dummy article
     Click Button  Create
-    Page Should Contain  article: Dummy article
+    Page Should Contain  author: Dummy Author

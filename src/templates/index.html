@@ -30,14 +30,20 @@ Bibtex app
     <div>
       You don't have references yet.
     </div>
+  {% else %}
+    {% for bibtex in bibtexs %}
+      <li style="display: flex">
+        <div>
+          {{ bibtex.label}}  ({{ bibtex.type }})
+          {% if bibtex.data %}
+            {% for k, v in bibtex.data.items() %}
+              <li>{{ k }}: {{ v }}</li>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </li>
+    {% endfor %}
   {% endif %}
-  {% for bibtex in bibtexs %}
-    <li style="display: flex">
-      <div>
-        {{ bibtex }} 
-      </div>
-    </li>
-  {% endfor %}
 </ul>
 
 {% endblock %}

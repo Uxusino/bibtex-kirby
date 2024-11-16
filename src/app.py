@@ -13,10 +13,16 @@ def index():
 def bibtex_creation():
     label = request.form.get("label")
 
+    dummy_data = {
+        "author": "Dummy Author",
+        "year": 2024,
+        "journal": "Ohtu"
+    }
+
     content = {
         "label": label,
         "type": "article",
-        "data": None
+        "data": dummy_data
     }
 
     try:
