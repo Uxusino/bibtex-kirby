@@ -19,6 +19,13 @@ class BibtexRepository:
         for b in bibtexs:
             bibs.append(Bibtex(b))
         return bibs
+    
+    def get_bibtex_by_label(self, label: str) -> Bibtex:
+        sql = text("SELECT * FROM bibtex WHERE label = (:label)")
+        result = self._db.session.execute(sql, {"label": label})
+        bibtex = result.fetchone()
+        bib = Bibtex(bibtex)
+        return bib
 
     # Assuming that argument 'content' follows this dict structure:
     # {
@@ -42,6 +49,11 @@ class BibtexRepository:
             "data": json.dumps(content['data'])
         }
         self._db.session.execute(sql, insert)
+        self._db.session.commit()
+
+    def reset_db(self):
+        sql = text(f"DELETE FROM bibtex")
+        self._db.session.execute(sql)
         self._db.session.commit()
 
 bibtex_repository = BibtexRepository(db)

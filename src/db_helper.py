@@ -31,11 +31,12 @@ def setup_db():
     db.session.execute(sql)
     db.session.commit()
 
+  # Label must be unique
   print(f"Creating table {table_name}")
   sql = text(
     f'CREATE TABLE "{table_name}" ('
     "  id SERIAL PRIMARY KEY, "
-    "  label TEXT NOT NULL, "
+    "  label TEXT NOT NULL UNIQUE, "
     "  type TEXT NOT NULL, "
     "  creation_time TIMESTAMP, "
     "  modified_time TIMESTAMP, "
