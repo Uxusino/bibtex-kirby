@@ -8,9 +8,16 @@ def index():
     bibtexs = repo.get_bibtexs()
     return render_template("index.html", bibtexs=bibtexs) 
 
+# TODO: replace dummy content with normal content
 @app.route("/create_bibtex", methods=["POST"])
 def bibtex_creation():
-    content = request.form.get("content")
+    label = request.form.get("label")
+
+    content = {
+        "label": label,
+        "type": "article",
+        "data": None
+    }
 
     try:
         repo.create_bibtex(content)

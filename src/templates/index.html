@@ -8,7 +8,22 @@ Bibtex app
 
 <h2>Bibtex app</h2>
 
-<div> Create new </div>
+<form action="/create_bibtex" method="post">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <label for="label">Create a dummy article with unique name</label>
+  <input type="text" name="label">
+  <button type="submit">
+    Create
+  </button>
+</form>
 
 <ul>
   {% for bibtex in bibtexs %}
