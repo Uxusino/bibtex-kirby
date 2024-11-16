@@ -26,6 +26,11 @@ Bibtex app
 </form>
 
 <ul>
+  {% if bibtexs == [] %}
+    <div>
+      You don't have references yet.
+    </div>
+  {% endif %}
   {% for bibtex in bibtexs %}
     <li style="display: flex">
       <div>
