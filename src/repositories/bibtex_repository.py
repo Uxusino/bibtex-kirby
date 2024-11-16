@@ -23,6 +23,7 @@ class BibtexRepository:
     # Assuming that argument 'content' follows this dict structure:
     # {
     #   "label": (str),
+    #   "type": (str),
     #   "data": (dict)
     #}
     def create_bibtex(self, content):
@@ -31,10 +32,11 @@ class BibtexRepository:
 
         sql = text(
             "INSERT INTO bibtex "
-            "  (label, creation_time, modified_time, data) "
-            "  VALUES (:label, :creation_time, :modified_time, :data)")
+            "  (label, type, creation_time, modified_time, data) "
+            "  VALUES (:label, :type, :creation_time, :modified_time, :data)")
         insert = {
             "label": content['label'],
+            "type": content['type'],
             "creation_time": current_time,
             "modified_time": current_time,
             "data": json.dumps(content['data'])

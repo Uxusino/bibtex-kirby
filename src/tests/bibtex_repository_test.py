@@ -12,6 +12,7 @@ class TestBibtexRepository(unittest.TestCase):
         }
         self.content = {
             "label": "test_bib",
+            "type": "article",
             "data": self.test_data
         }
 
@@ -22,7 +23,7 @@ class TestBibtexRepository(unittest.TestCase):
 
         bibtex = str(result[0])
 
-        self.assertEqual(bibtex, "1: test_bib")
+        self.assertEqual(bibtex, "1 article: test_bib")
 
 
     def test_bibtex_data_from_db_is_dict(self):

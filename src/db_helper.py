@@ -36,6 +36,7 @@ def setup_db():
     f'CREATE TABLE "{table_name}" ('
     "  id SERIAL PRIMARY KEY, "
     "  label TEXT NOT NULL, "
+    "  type TEXT NOT NULL, "
     "  creation_time TIMESTAMP, "
     "  modified_time TIMESTAMP, "
     "  data JSON "
