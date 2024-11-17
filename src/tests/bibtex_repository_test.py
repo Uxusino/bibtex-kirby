@@ -24,7 +24,6 @@ class TestBibtexRepository(unittest.TestCase):
 
         self.assertEqual(result.label, "test_bib")
 
-
     def test_bibtex_data_from_db_is_dict(self):
         with app.app_context():
             self.repo.reset_db()

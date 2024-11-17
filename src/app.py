@@ -2,24 +2,26 @@ from flask import redirect, render_template, request, jsonify, flash
 from db_helper import reset_db
 from repositories.bibtex_repository import bibtex_repository as repo
 from config import app, test_env
-from util import validate_data
+from util import validate_data, generate_label
 
 @app.route("/")
 def index():
     bibtexs = repo.get_bibtexs()
     return render_template("index.html", bibtexs=bibtexs) 
 
-# TODO: replace dummy content with normal content
+# TODO: make possible to add other types of references
 @app.route("/create_bibtex", methods=["POST"])
 def bibtex_creation():
     content = request.form.to_dict()
-    label = content.get("label")
-    del content["label"]
+
+    # Removes empty fields
+    data = {k: v for k, v in content.items() if v}
+    label = generate_label(data)
 
     new_bib = {
         "label": label,
         "type": "article",
-        "data": content
+        "data": data
     }
 
     try:

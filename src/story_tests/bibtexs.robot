@@ -12,7 +12,6 @@ At start there are no bibtexs
 
 After adding a bibtex, there is one
     Go To  ${HOME_URL}
-    Input Text  label  dummy2024article
     Input Text  title  Creating random articles.
     Input Text  author  Dummy, A.
     Input Text  journal  Journal about creating articles
@@ -22,7 +21,6 @@ After adding a bibtex, there is one
 
 All required fields must be filled
     Go To  ${HOME_URL}
-    Input Text  label  article2001dummy
     Input Text  author  Dummy, B.
     Input Text  journal  Journal about creating articles
     Input Text  year  2024
@@ -31,10 +29,18 @@ All required fields must be filled
 
 Year must be an integer
     Go To  ${HOME_URL}
-    Input Text  label  dummy2009article
     Input Text  title  Creating random articles.
     Input Text  author  Dummy, C.
     Input Text  journal  Journal about creating articles
     Input Text  year  gazillion
     Click Button  Create
     Page Should Contain    Year must be an integer.
+
+Cannot add article from future
+    Go To  ${HOME_URL}
+    Input Text  title  Creating random articles.
+    Input Text  author  Dummy, D.
+    Input Text  journal  Journal about creating articles
+    Input Text  year  2025
+    Click Button  Create
+    Page Should Contain    Invalid year.
