@@ -2,6 +2,7 @@ from flask import redirect, render_template, request, jsonify, flash
 from db_helper import reset_db
 from repositories.bibtex_repository import bibtex_repository as repo
 from config import app, test_env
+from util import validate_data
 
 @app.route("/")
 def index():
@@ -22,6 +23,7 @@ def bibtex_creation():
     }
 
     try:
+        validate_data(content)
         repo.create_bibtex(new_bib)
         return redirect("/")
     except Exception as error:

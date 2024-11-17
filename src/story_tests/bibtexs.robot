@@ -28,3 +28,13 @@ All required fields must be filled
     Input Text  year  2024
     Click Button  Create
     Page Should Not Contain    author: Dummy, B.
+
+Year must be an integer
+    Go To  ${HOME_URL}
+    Input Text  label  dummy2009article
+    Input Text  title  Creating random articles.
+    Input Text  author  Dummy, C.
+    Input Text  journal  Journal about creating articles
+    Input Text  year  gazillion
+    Click Button  Create
+    Page Should Contain    Year must be an integer.
