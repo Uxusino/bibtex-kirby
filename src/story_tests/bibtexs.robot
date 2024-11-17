@@ -12,6 +12,19 @@ At start there are no bibtexs
 
 After adding a bibtex, there is one
     Go To  ${HOME_URL}
-    Input Text  label  Dummy article
+    Input Text  label  dummy2024article
+    Input Text  title  Creating random articles.
+    Input Text  author  Dummy, A.
+    Input Text  journal  Journal about creating articles
+    Input Text  year  2024
     Click Button  Create
-    Page Should Contain  author: Dummy Author
+    Page Should Contain  author: Dummy, A.
+
+All required fields must be filled
+    Go To  ${HOME_URL}
+    Input Text  label  article2001dummy
+    Input Text  author  Dummy, B.
+    Input Text  journal  Journal about creating articles
+    Input Text  year  2024
+    Click Button  Create
+    Page Should Not Contain    author: Dummy, B.

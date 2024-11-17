@@ -11,22 +11,18 @@ def index():
 # TODO: replace dummy content with normal content
 @app.route("/create_bibtex", methods=["POST"])
 def bibtex_creation():
-    label = request.form.get("label")
+    content = request.form.to_dict()
+    label = content.get("label")
+    del content["label"]
 
-    dummy_data = {
-        "author": "Dummy Author",
-        "year": 2024,
-        "journal": "Ohtu"
-    }
-
-    content = {
+    new_bib = {
         "label": label,
         "type": "article",
-        "data": dummy_data
+        "data": content
     }
 
     try:
-        repo.create_bibtex(content)
+        repo.create_bibtex(new_bib)
         return redirect("/")
     except Exception as error:
         flash(str(error))

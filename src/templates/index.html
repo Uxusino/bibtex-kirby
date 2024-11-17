@@ -18,8 +18,22 @@ Bibtex app
       </ul>
     {% endif %}
   {% endwith %}
-  <label for="label">Create a dummy article with unique name</label>
-  <input type="text" name="label">
+  <label>Create an article</label>
+  <br>
+  <label for="label">Label (must be unique)</label>
+  <input type="text" name="label" required>
+  <br>
+  <label for="title">Title</label>
+  <input type="text" name="title" required>
+  <br>
+  <label for="author">Author</label>
+  <input type="text" name="author" required>
+  <br>
+  <label for="journal">Journal</label>
+  <input type="text" name="journal" required>
+  <br>
+  <label for="year">Year</label>
+  <input type="text" name="year" required>
   <button type="submit">
     Create
   </button>
@@ -30,20 +44,19 @@ Bibtex app
     <div>
       You don't have references yet.
     </div>
-  {% else %}
-    {% for bibtex in bibtexs %}
-      <li style="display: flex">
-        <div>
-          {{ bibtex.label}}  ({{ bibtex.type }})
-          {% if bibtex.data %}
-            {% for k, v in bibtex.data.items() %}
-              <li>{{ k }}: {{ v }}</li>
-            {% endfor %}
-          {% endif %}
-        </div>
-      </li>
-    {% endfor %}
   {% endif %}
+  {% for bibtex in bibtexs %}
+    <li style="display: flex">
+      <div>
+        {{ bibtex.label}}  ({{ bibtex.type }})
+        {% if bibtex.data %}
+          {% for k, v in bibtex.data.items() %}
+            <li>{{ k }}: {{ v }}</li>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </li>
+  {% endfor %}
 </ul>
 
 {% endblock %}
