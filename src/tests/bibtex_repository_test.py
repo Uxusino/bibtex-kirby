@@ -24,6 +24,16 @@ class TestBibtexRepository(unittest.TestCase):
 
         self.assertEqual(result.label, "test_bib")
 
+    def test_delete_bibtex_deletes_the_bibtex(self):
+        with app.app_context():
+            self.repo.reset_db()
+            self.repo.create_bibtex(self.content)
+            result = self.repo.get_bibtex_by_label("test_bib")
+            self.repo.delete_bibtex(result.id)
+            result2 = self.repo.get_bibtexs()
+
+        self.assertEqual(result2, [])
+
     def test_bibtex_data_from_db_is_dict(self):
         with app.app_context():
             self.repo.reset_db()

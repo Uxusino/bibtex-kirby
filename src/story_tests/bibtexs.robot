@@ -44,3 +44,13 @@ Cannot add article from future
     Input Text  year  2025
     Click Button  Create
     Page Should Contain    Invalid year.
+
+Deletion succees
+    Go To  ${HOME_URL}
+    Input Text  title  Creating random articles.
+    Input Text  author  Dummy, D.
+    Input Text  journal  Journal about creating articles
+    Input Text  year  2023
+    Click Button  Create
+    Click Button  Delete
+    Page Should Contain  You don't have references yet.
