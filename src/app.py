@@ -31,6 +31,12 @@ def bibtex_creation():
     except Exception as error:
         flash(str(error))
         return  redirect("/")
+    
+@app.route("/delete_bibtex", methods=["POST"])
+def delete_bibtex():
+    bib_tex_id = request.form.get("bibtex_id")
+    repo.delete_bibtex(bib_tex_id)
+    return redirect("/")
 
 # testausta varten oleva reitti
 if test_env:

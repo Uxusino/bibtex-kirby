@@ -67,6 +67,10 @@ Bibtex app
           {% endfor %}
         {% endif %}
       </div>
+      <form action="/delete_bibtex" method="post" style="margin-left: 10px;">
+        <input type="hidden" name="bibtex_id" value="{{ bibtex.id }}">
+        <button type="submit">Delete</button>
+      </form>
       <br>
     </li>
   {% endfor %}
