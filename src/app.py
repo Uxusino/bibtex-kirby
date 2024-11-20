@@ -34,7 +34,7 @@ def bibtex_creation():
         return redirect("/")
     except Exception as error:
         flash(str(error))
-        return  redirect("/")
+        return  redirect("/create")
     
 @app.route("/delete_bibtex", methods=["POST"])
 def delete_bibtex():
