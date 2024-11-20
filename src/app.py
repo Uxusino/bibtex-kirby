@@ -9,6 +9,10 @@ def index():
     bibtexs = repo.get_bibtexs()
     return render_template("index.html", bibtexs=bibtexs) 
 
+@app.route("/create")
+def create():
+    return render_template("create.html")
+
 # TODO: make possible to add other types of references
 @app.route("/create_bibtex", methods=["POST"])
 def bibtex_creation():

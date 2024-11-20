@@ -1,0 +1,82 @@
+body {
+    background-color: #eeeeee;
+  }
+
+  .bibtex-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .bibtex-item {
+    border-bottom: 1px solid #2d204d;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+
+  .bibtex-header {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+  }
+
+  .bibtex-label {
+    color: #000000;
+  }
+
+  .bibtex-type {
+    color: #535353;
+  }
+
+  .bibtex-details {
+    list-style: none;
+    padding-left: 20px;
+    margin: 0;
+  }
+
+  .bibtex-detail {
+    margin-bottom: 10px;
+  }
+
+  .bibtex-detail strong {
+    color: #555;
+  }
+
+  .bibtex-item:hover {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  .bibtex-form {
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    align-items: center;
+  }
+  .form-group {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .submit-btn {
+    display: block;
+    width: 100px;
+    padding: 10px;
+    background-color: #32254b;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+  }
+  .journal-input {
+    margin-left: 30px;
+    margin-right: 200px;
+  }
+
+  /* .delete-btn {
+  } */

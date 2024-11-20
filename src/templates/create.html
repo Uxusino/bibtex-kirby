@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Bibtex app
+{% endblock %}
+
+{% block body %}
+
+<h2>Bibtex app</h2>
+
+<form action="/create_bibtex" method="post" class="bibtex-form">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  <a href="/"> << Cancel</a>
+
+  <h3>Create an Article</h3>
+
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" name="title" required class="journal-input">
+  </div>
+
+  <div class="form-group">
+    <label for="author">Author</label>
+    <input type="text" name="author" required class="journal-input">
+  </div>
+
+  <div class="form-group">
+    <label for="journal">Journal </label>
+    <input type="text" name="journal" required class="journal-input">
+  </div>
+
+  <div class="form-group">
+    <label for="year">Year</label>
+    <input type="text" name="year" required class="journal-input">
+  </div>
+
+  <div class="form-group">
+    <label for="volume">Volume</label>
+    <input type="text" name="volume" class="journal-input">
+  </div>
+
+  <div class="form-group">
+    <label for="number">Number</label>
+    <input type="text" name="number" class="journal-input">
+  </div>
+
+  <div class="form-group">
+    <label for="pages">Pages</label>
+    <input type="text" name="pages" class="journal-input">
+  </div>
+
+  <div class="form-group">
+    <label for="doi">DOI</label>
+    <input type="text" name="doi" class="journal-input">
+  </div>
+
+  <div class="form-group">
+    <label for="url">URL</label>
+    <input type="text" name="url" class="journal-input">
+  </div>
+
+  <div>
+  <button type="submit" class="submit-btn">
+    Create
+  </button>
+
+</div>
+
+</form>
+
+{% endblock %}
