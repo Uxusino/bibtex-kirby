@@ -19,7 +19,7 @@ Bibtex app
     {% for bibtex in bibtexs %}
       <li class="bibtex-item">
         <div class="bibtex-header">
-          <span class="bibtex-label">{{ bibtex.data['title'] }}</span>
+          <span class="bibtex-title">{{ bibtex.data['title'] }}</span>
           <span class="bibtex-type">({{ bibtex.type }})</span>
         </div>
         {% if bibtex.data %}
