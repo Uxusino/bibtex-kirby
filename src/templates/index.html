@@ -12,7 +12,7 @@ Bibtex app
 <div id="modal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
-    <p>This window will contain edit lines and export button.</p>
+    <span id="modal-body">This window will contain edit lines and export button.</span>
   </div>
 </div>
 
@@ -26,7 +26,10 @@ Bibtex app
     {% for bibtex in bibtexs %}
       <li class="bibtex-item">
         <div class="bibtex-header">
-          <span class="bibtex-title">{{ bibtex.data['title'] }}</span>
+          <span class="bibtex-title"
+            data-bibtex='{{ bibtex.data | tojson }}'>
+            {{ bibtex.data['title'] }}
+          </span>
           <span class="bibtex-type">({{ bibtex.type }})</span>
         </div>
         {% if bibtex.data %}
