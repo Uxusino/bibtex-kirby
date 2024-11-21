@@ -9,6 +9,13 @@ Bibtex app
 <h2>Bibtex app</h2>
 <a href="/create">Create new reference</a>
 
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>This window will contain edit lines and export button.</p>
+  </div>
+</div>
+
 <ul>
   {% if bibtexs == [] %}
     <div>
@@ -39,5 +46,7 @@ Bibtex app
       </li>
     {% endfor %}
   </ul>
+
+  <script src="/static/js/script.js"></script>
 
 {% endblock %}
