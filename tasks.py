@@ -11,3 +11,7 @@ def build(ctx):
 @task
 def unittest(ctx):
     ctx.run("pytest src/tests", pty=True)
+
+@task
+def robot(ctx):
+    ctx.run("robot src/story_tests")

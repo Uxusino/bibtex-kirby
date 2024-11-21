@@ -33,3 +33,9 @@ poetry run invoke start
 ```
 poetry run invoke unittest
 ```
+
+2. Robot-testis:
+
+```
+poetry run invoke robot
+```
