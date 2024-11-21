@@ -16,16 +16,35 @@ openModalButtons.forEach(button => {
         // Puts title and author first
         orderedKeys.forEach(k => {
             if (data[k]) {
-                const paragraph = document.createElement("p");
-                paragraph.textContent = `${k}: ${data[k]}`;
+                const paragraph = document.createElement("div");
+                const name = document.createElement("label");
+                const content = document.createElement("input");
+
+                name.textContent = `${k}`;
+
+                content.value = `${data[k]}`;
+                content.className = "modal-input-content"
+
+                paragraph.appendChild(name);
+                paragraph.appendChild(content);
+
                 modalBody.appendChild(paragraph);
             }
         });
 
         Object.entries(data).forEach(([k, v]) => {
             if (!orderedKeys.includes(k)) {
-                const paragraph = document.createElement("p");
-                paragraph.textContent = `${k}: ${v}`;
+                const paragraph = document.createElement("div");
+                const name = document.createElement("label");
+                const content = document.createElement("input");
+
+                name.textContent = `${k}`;
+                content.value = `${data[k]}`;
+                content.className = "modal-input-content"
+
+                paragraph.appendChild(name);
+                paragraph.appendChild(content);
+
                 modalBody.appendChild(paragraph);
             }
         });
