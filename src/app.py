@@ -2,7 +2,7 @@ from flask import redirect, render_template, request, jsonify, flash
 from db_helper import reset_db
 from repositories.bibtex_repository import bibtex_repository as repo
 from config import app, test_env
-from util import validate_data, generate_label
+from util import parse_request
 
 @app.route("/")
 def index():
@@ -13,23 +13,12 @@ def index():
 def create():
     return render_template("create.html")
 
-# TODO: make possible to add other types of references
 @app.route("/create_bibtex", methods=["POST"])
 def bibtex_creation():
     content = request.form.to_dict()
-
-    # Removes empty fields
-    data = {k: v for k, v in content.items() if v}
-    label = generate_label(data)
-
-    new_bib = {
-        "label": label,
-        "type": "article",
-        "data": data
-    }
-
+    
     try:
-        validate_data(content)
+        new_bib = parse_request(content)
         repo.create_bibtex(new_bib)
         return redirect("/")
     except Exception as error:
@@ -41,6 +30,22 @@ def delete_bibtex():
     bib_tex_id = request.form.get("bibtex_id")
     repo.delete_bibtex(bib_tex_id)
     return redirect("/")
+
+# TODO: make possible to add missing fields in the future
+@app.route("/update_bibtex", methods=["POST"])
+def update_bibtex():
+    content = request.form.to_dict()
+    id = int(content.get("bibtex_id"))
+    del content['bibtex_id']
+
+    try:
+        upd_bib = parse_request(content)
+        repo.update_bibtex(id, upd_bib)
+        return redirect("/")
+    except Exception as error:
+        flash(str(error))
+        return redirect("/")
+
 
 # testausta varten oleva reitti
 if test_env:

@@ -10,10 +10,21 @@ class TestBibtexRepository(unittest.TestCase):
             "title": "Creating bibs",
             "year": 2024
         }
+        self.new_data = {
+            "title": "Updating bibs",
+            "year": 2023,
+            "journal": "Updated Bibs",
+            "author": "Serial Updater"
+        }
         self.content = {
             "label": "test_bib",
             "type": "article",
             "data": self.test_data
+        }
+        self.new_content = {
+            "label": "test2024bib",
+            "type": "article",
+            "data": self.new_data
         }
 
     def test_create_bibtex_adds_a_bibtex(self):
@@ -57,3 +68,15 @@ class TestBibtexRepository(unittest.TestCase):
             result = self.repo.get_bibtexs()
         
         self.assertEqual(result, [])
+
+    def test_update_db(self):
+        with app.app_context():
+            self.repo.reset_db()
+            label = self.repo.create_bibtex(self.content)
+            bib = self.repo.get_bibtex_by_label(label)
+            id = bib.id
+            self.repo.update_bibtex(id, self.new_content)
+            result = self.repo.get_bibtex_by_label(self.new_content['label'])
+
+        self.assertEqual(result.data['author'], "Serial Updater")
+

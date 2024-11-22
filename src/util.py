@@ -27,3 +27,19 @@ def generate_label(content: dict[str]) -> str:
     label = f"{author} {title} {year}"
     return label
 
+# TODO: make possible to add other types of references
+def parse_request(content: dict[str]) -> dict:
+    data = {k: v for k, v in content.items() if v}
+    try:
+        validate_data(content)
+    except Exception as error:
+        raise error
+    label = generate_label(data)
+
+    new_bib = {
+        "label": label,
+        "type": "article",
+        "data": data
+    }
+
+    return new_bib

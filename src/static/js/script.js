@@ -5,6 +5,7 @@ const closeModalButton = document.querySelector(".close");
 const modalBody = document.getElementById("modal-body");
 const leftBlock = document.getElementById("left-block");
 const rightBlock = document.getElementById("right-block");
+const modalId = document.getElementById("modal-bibtex-id");
 
 function addModalFields(key, jsondata) {
   const name = document.createElement("label");
@@ -13,6 +14,7 @@ function addModalFields(key, jsondata) {
   name.textContent = `${key}`;
 
   content.value = `${jsondata[key]}`;
+  content.name = `${key}`
   content.className = "modal-input-content";
 
   leftBlock.appendChild(name);
@@ -23,6 +25,7 @@ function addModalFields(key, jsondata) {
 openModalButtons.forEach(button => {
     button.addEventListener("click", () => {
         const data = JSON.parse(button.getAttribute("data-bibtex"));
+        const id = button.getAttribute("data-id");
 
         leftBlock.innerHTML = "";
         rightBlock.innerHTML = "";
@@ -32,16 +35,17 @@ openModalButtons.forEach(button => {
         // Puts title and author first
         orderedKeys.forEach(k => {
             if (data[k]) {
-                addModalFields(k, data)
+                addModalFields(k, data);
             }
         });
 
         Object.entries(data).forEach(([k, v]) => {
             if (!orderedKeys.includes(k)) {
-                addModalFields(k, data)
+                addModalFields(k, data);
             }
         });
 
+        modalId.value = id;
         modal.style.display = "block";
     })
 });

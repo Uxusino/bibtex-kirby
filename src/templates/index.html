@@ -12,10 +12,14 @@ Bibtex app
 <div id="modal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
-    <div id="modal-body" class="modal-body">
-      <div id="left-block"></div>
-      <div id="right-block"></div>
-    </div>
+    <form action="/update_bibtex" method="post">
+      <div id="modal-body" class="modal-body">
+        <div id="left-block"></div>
+        <div id="right-block"></div>
+      </div>
+        <input type="hidden" name="bibtex_id" id="modal-bibtex-id">
+        <button type="submit" class="submit-btn">Save</button>
+    </form>
   </div>
 </div>
 
@@ -30,7 +34,9 @@ Bibtex app
       <li class="bibtex-item">
         <div class="bibtex-header">
           <span class="bibtex-title"
-            data-bibtex='{{ bibtex.data | tojson }}'>
+            name="bibtex-title"
+            data-bibtex='{{ bibtex.data | tojson }}'
+            data-id='{{ bibtex.id }}'>
             {{ bibtex.data['title'] }}
           </span>
           <span class="bibtex-type">({{ bibtex.type }})</span>
@@ -46,7 +52,7 @@ Bibtex app
         {% endif %}
         <form action="/delete_bibtex" method="post" style="margin-left: 10px;">
           <input type="hidden" name="bibtex_id" value="{{ bibtex.id }}">
-          <button type="submit">Delete</button>
+          <button type="submit" class="submit-btn">Delete</button>
         </form>
   
       </li>
