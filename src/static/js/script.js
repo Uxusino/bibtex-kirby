@@ -2,50 +2,43 @@
 const modal = document.getElementById("modal");
 const openModalButtons = document.querySelectorAll(".bibtex-title");
 const closeModalButton = document.querySelector(".close");
-const modalBody = document.getElementById("modal-body")
+const modalBody = document.getElementById("modal-body");
+const leftBlock = document.getElementById("left-block");
+const rightBlock = document.getElementById("right-block");
+
+function addModalFields(key, jsondata) {
+  const name = document.createElement("label");
+  const content = document.createElement("input");
+
+  name.textContent = `${key}`;
+
+  content.value = `${jsondata[key]}`;
+  content.className = "modal-input-content";
+
+  leftBlock.appendChild(name);
+  rightBlock.appendChild(content);
+}
 
 // Each bibtex title can open modal
 openModalButtons.forEach(button => {
     button.addEventListener("click", () => {
         const data = JSON.parse(button.getAttribute("data-bibtex"));
 
-        modalBody.innerHTML = "";
+        leftBlock.innerHTML = "";
+        rightBlock.innerHTML = "";
 
         const orderedKeys = ['title', 'author'];
 
         // Puts title and author first
         orderedKeys.forEach(k => {
             if (data[k]) {
-                const paragraph = document.createElement("div");
-                const name = document.createElement("label");
-                const content = document.createElement("input");
-
-                name.textContent = `${k}`;
-
-                content.value = `${data[k]}`;
-                content.className = "modal-input-content"
-
-                paragraph.appendChild(name);
-                paragraph.appendChild(content);
-
-                modalBody.appendChild(paragraph);
+                addModalFields(k, data)
             }
         });
 
         Object.entries(data).forEach(([k, v]) => {
             if (!orderedKeys.includes(k)) {
-                const paragraph = document.createElement("div");
-                const name = document.createElement("label");
-                const content = document.createElement("input");
-
-                name.textContent = `${k}`;
-                content.value = `${data[k]}`;
-                content.className = "modal-input-content"
-
-                paragraph.appendChild(name);
-                paragraph.appendChild(content);
-
-                modalBody.appendChild(paragraph);
+                addModalFields(k, data)
             }
         });
 
