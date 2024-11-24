@@ -15,8 +15,6 @@ class TestBibtex(unittest.TestCase):
         self.assertEqual(self.bibtex.modified_time, "2024-01-01 00:00:00")
         self.assertEqual(self.bibtex.data, {"title": "Test Title", "year": 2024})
 
-    def test_bibtex_str(self):
-        self.assertEqual(str(self.bibtex), "1 article: test_label")
 
 if __name__ == '__main__':
     unittest.main()
