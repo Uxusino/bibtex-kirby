@@ -9,9 +9,15 @@ from util import parse_request
 def to_str(bibtex):
     return str(bibtex)
 
-@app.route("/")
-def index():
+@app.route("/", defaults={"sort": "creation_time=1"})
+@app.route("/<sort>/")
+def index(sort):
+    sort, reverse = sort.split("=")
     bibtexs = repo.get_bibtexs()
+    if sort == "label":
+        bibtexs.sort(key=lambda x: x.label.split("_")[1], reverse=int(reverse))
+    else:
+        bibtexs.sort(key=lambda x: getattr(x, sort), reverse=int(reverse))
     return render_template("index.html", bibtexs=bibtexs) 
 
 @app.route("/create")

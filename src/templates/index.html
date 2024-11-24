@@ -23,6 +23,28 @@ Bibtex app
   </div>
 </div>
 
+<h3>Sort references by</h3>
+<div class="sort-buttons">
+  <form action="/label=0" method="get" style="margin-left: 10px;">
+    <button type="submit" class="submit-btn">A-Z</button>
+  </form>
+  <form action="/label=1" method="get" style="margin-left: 10px;">
+    <button type="submit" class="submit-btn">Z-A</button>
+  </form>
+  <form action="/creation_time=0" method="get" style="margin-left: 10px;">
+    <button type="submit" class="submit-btn">Created first</button>
+  </form>
+  <form action="/creation_time=1" method="get" style="margin-left: 10px;">
+    <button type="submit" class="submit-btn">Created last</button>
+  </form>
+  <form action="/modified_time=0" method="get" style="margin-left: 10px;">
+    <button type="submit" class="submit-btn">Earliest modified</button>
+  </form>
+  <form action="/modified_time=1" method="get" style="margin-left: 10px;">
+    <button type="submit" class="submit-btn">Last modified</button>
+  </form>
+</div>
+
 <ul>
   {% if bibtexs == [] %}
     <div>
