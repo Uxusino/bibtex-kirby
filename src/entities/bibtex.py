@@ -6,6 +6,7 @@ class Bibtex:
         self.creation_time = content[3]
         self.modified_time = content[4]
         self.data = content[5]
+        print(self.data)
 
     def __str__(self):
         starting_string = f"@{self.type}{{{self.label},\n"
