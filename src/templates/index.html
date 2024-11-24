@@ -72,12 +72,15 @@ Bibtex app
           {% endfor %}
         </ul>
         {% endif %}
-        <form action="/delete_bibtex" method="post" style="margin-left: 10px;">
-          <input type="hidden" name="bibtex_id" value="{{ bibtex.id }}">
-          <button type="submit" class="submit-btn">Delete</button>
-        </form>
 
-        <button class="copy-button" data-bibtex=' {{ bibtex | to_str }} '>Copy .bib</button>
+        <div class="reference-buttons">
+          <form action="/delete_bibtex" method="post" style="margin-left: 10px;">
+            <input type="hidden" name="bibtex_id" value="{{ bibtex.id }}">
+            <button type="submit" class="submit-btn">Delete</button>
+          </form>
+  
+          <button class="copy-btn" data-bibtex=' {{ bibtex | to_str }} '>Copy .bib</button>
+        </div>
   
       </li>
     {% endfor %}

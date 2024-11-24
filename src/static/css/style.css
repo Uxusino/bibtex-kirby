@@ -67,7 +67,7 @@ body {
     align-items: center;
   }
 
-  .submit-btn {
+  .submit-btn, .copy-btn {
     display: block;
     width: 100px;
     padding: 10px;
@@ -144,7 +144,7 @@ body {
     grid-auto-flow: row;
   }
 
-  .sort-buttons {
+  .sort-buttons, .reference-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;

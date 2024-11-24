@@ -7,7 +7,7 @@ const leftBlock = document.getElementById("left-block");
 const rightBlock = document.getElementById("right-block");
 const modalId = document.getElementById("modal-bibtex-id");
 
-const copyButtons = document.querySelectorAll(".copy-button");
+const copyButtons = document.querySelectorAll(".copy-btn");
 
 function addModalFields(key, jsondata) {
   const name = document.createElement("label");
