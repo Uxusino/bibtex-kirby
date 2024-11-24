@@ -24,7 +24,7 @@ def generate_label(content: dict[str]) -> str:
     title = title.split()[0].lower()
     
     year = content['year']
-    label = f"{author} {title} {year}"
+    label = f"{author}_{title}_{year}"
     return label
 
 # TODO: make possible to add other types of references
