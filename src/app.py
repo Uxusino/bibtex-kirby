@@ -1,4 +1,4 @@
-from flask import redirect, render_template, request, jsonify, flash
+from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
 from repositories.bibtex_repository import bibtex_repository as repo
 from config import app, test_env
@@ -56,6 +56,21 @@ def update_bibtex():
     except Exception as error:
         flash(str(error))
         return redirect("/")
+    
+@app.route("/export")
+def export():
+    file_content = ""
+    bibtexes = repo.get_bibtexs()
+    for bib in bibtexes:
+        file_content = file_content + str(bib) + "\n\n"
+
+    return Response(
+        file_content,
+        mimetype="text/plain",
+        headers={
+            "Content-Disposition": "attachment;filename=bibliography.bib"
+        }
+    )
 
 
 # testausta varten oleva reitti
