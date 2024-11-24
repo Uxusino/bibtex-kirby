@@ -1,5 +1,4 @@
 class Bibtex:
-    #todo fiksaa nää
     def __init__(self, content: tuple):
         self.id = content[0]
         self.label = content[1]
@@ -9,4 +8,10 @@ class Bibtex:
         self.data = content[5]
 
     def __str__(self):
-        return f"{self.id} {self.type}: {self.label}"
+        starting_string = f"@{self.type}{{{self.label},\n"
+        for k, v in self.data.items():
+            next_line = f"    {k} = {{{v}}},\n"
+            starting_string = starting_string + next_line
+        starting_string = starting_string[:-2]
+        starting_string = starting_string + "\n}"
+        return starting_string

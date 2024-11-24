@@ -4,6 +4,11 @@ from repositories.bibtex_repository import bibtex_repository as repo
 from config import app, test_env
 from util import parse_request
 
+# Filter to turn bibtexes to strings inside the template
+@app.template_filter('to_str')
+def to_str(bibtex):
+    return str(bibtex)
+
 @app.route("/")
 def index():
     bibtexs = repo.get_bibtexs()

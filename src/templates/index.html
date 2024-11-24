@@ -54,6 +54,8 @@ Bibtex app
           <input type="hidden" name="bibtex_id" value="{{ bibtex.id }}">
           <button type="submit" class="submit-btn">Delete</button>
         </form>
+
+        <button class="copy-button" data-bibtex=' {{ bibtex | to_str }} '>Copy .bib</button>
   
       </li>
     {% endfor %}

@@ -7,6 +7,8 @@ const leftBlock = document.getElementById("left-block");
 const rightBlock = document.getElementById("right-block");
 const modalId = document.getElementById("modal-bibtex-id");
 
+const copyButtons = document.querySelectorAll(".copy-button");
+
 function addModalFields(key, jsondata) {
   const name = document.createElement("label");
   const content = document.createElement("input");
@@ -61,3 +63,18 @@ window.addEventListener("click", (event) => {
     modal.style.display = "none";
   }
 });
+
+// event for copy button
+copyButtons.forEach(button => {
+  button.addEventListener("click", function() {
+    const textToCopy = button.getAttribute('data-bibtex');
+  
+    navigator.clipboard.writeText(textToCopy)
+      .then(() => {
+        alert(".bib copied to clipboard");
+      })
+      .catch(err => {
+        console.error("Error while copying .bib: ", err);
+      });
+  });
+})
