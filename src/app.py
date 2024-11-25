@@ -13,9 +13,10 @@ def to_str(bibtex):
 @app.route("/<sort>/")
 def index(sort):
     sort, reverse = sort.split("=")
+    print(sort)
     bibtexs = repo.get_bibtexs()
     if sort == "label":
-        bibtexs.sort(key=lambda x: x.data["title"], reverse=int(reverse))
+        bibtexs.sort(key=lambda x: x.data["title"].lower(), reverse=int(reverse))
     else:
         bibtexs.sort(key=lambda x: getattr(x, sort), reverse=int(reverse))
     return render_template("index.html", bibtexs=bibtexs) 
