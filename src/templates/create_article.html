@@ -9,6 +9,7 @@ Bibtex app
 <h2>Bibtex app</h2>
 
 <form action="/create_bibtex" method="post" class="bibtex-form">
+  <input type="hidden" name="type" value="article">
   {% with messages = get_flashed_messages() %}
     {% if messages %}
       <ul>

@@ -20,9 +20,21 @@ def index(sort):
         bibtexs.sort(key=lambda x: getattr(x, sort), reverse=int(reverse))
     return render_template("index.html", bibtexs=bibtexs) 
 
-@app.route("/create")
-def create():
-    return render_template("create.html")
+@app.route("/create_article")
+def create_article():
+    return render_template("create_article.html")
+
+@app.route("/create_book")
+def create_book():
+    return render_template("create_book.html")
+
+@app.route("/create_inproceedings")
+def create_inproceedings():
+    return render_template("create_inproceedings.html")
+
+@app.route("/create_misc")
+def create_misc():
+    return render_template("create_misc.html")
 
 @app.route("/create_bibtex", methods=["POST"])
 def bibtex_creation():
