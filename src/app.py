@@ -39,6 +39,7 @@ def create_misc():
 @app.route("/create_bibtex", methods=["POST"])
 def bibtex_creation():
     content = request.form.to_dict()
+    type = content.get("type")
     
     try:
         new_bib = parse_request(content)
@@ -46,7 +47,7 @@ def bibtex_creation():
         return redirect("/")
     except Exception as error:
         flash(str(error))
-        return  redirect("/create")
+        return redirect("/create_" + type)
     
 @app.route("/delete_bibtex", methods=["POST"])
 def delete_bibtex():
