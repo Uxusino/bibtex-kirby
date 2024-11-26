@@ -12,13 +12,17 @@ def to_str(bibtex):
 @app.route("/", defaults={"sort": "creation_time=1"})
 @app.route("/<sort>/")
 def index(sort):
-    sort, reverse = sort.split("=")
+    if "=" in sort:
+        sort, reverse = sort.split("=")
+        reverse = int(reverse)
+    else:
+        sort, reverse = "creation_time", 1
     print(sort)
     bibtexs = repo.get_bibtexs()
     if sort == "label":
-        bibtexs.sort(key=lambda x: x.data["title"].lower(), reverse=int(reverse))
+        bibtexs.sort(key=lambda x: x.data["title"].lower(), reverse=reverse)
     else:
-        bibtexs.sort(key=lambda x: getattr(x, sort), reverse=int(reverse))
+        bibtexs.sort(key=lambda x: getattr(x, sort), reverse=reverse)
     return render_template("index.html", bibtexs=bibtexs) 
 
 @app.route("/create_article")
