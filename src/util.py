@@ -99,3 +99,7 @@ def parse_request(content: dict[str]) -> dict:
     }
 
     return new_bib
+
+def filter_bibtexs(bibtexs, query):
+    return list(filter(lambda b: query.lower() in b.data["author"].lower()
+                          or query.lower() in b.data["title"].lower(), bibtexs))

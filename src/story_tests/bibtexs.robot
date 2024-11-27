@@ -72,3 +72,24 @@ User can update references
     Input Text  title  Updating random articles.
     Click Button  Save
     Page Should Contain    Updating random articles.
+
+User can search references
+    Go To  ${HOME_URL}
+    Click Link  Create article
+    Input Text  title  Creating random articles.
+    Input Text  author  Dummy, A.
+    Input Text  journal  Journal about creating articles
+    Input Text  year  2024
+    Click Button  Create
+
+    Input Text  query  å
+    Click Button  Search
+    Page Should Contain  No results
+
+    Input Text  query  creating
+    Click Button  Search
+    Page Should Contain  Creating random articles.
+
+    Input Text  query  y
+    Click Button  Search
+    Page Should Contain  Creating random articles.

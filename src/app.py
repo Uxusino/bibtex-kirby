@@ -11,7 +11,7 @@ from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
 from repositories.bibtex_repository import bibtex_repository as repo
 from config import app, test_env
-from util import parse_request
+from util import parse_request, filter_bibtexs
 
 # Filter to turn bibtexes to strings inside the template
 @app.template_filter('to_str')
@@ -62,8 +62,7 @@ def search():
 @app.route("/search/<query>")
 def search_releases(query):
     bibtexs = repo.get_bibtexs()
-    bibtexs = list(filter(lambda b: query.lower() in b.data["author"].lower()
-                          or query.lower() in b.data["title"].lower(), bibtexs))
+    bibtexs = filter_bibtexs(bibtexs, query)
     return render_template("/search.html", bibtexs=bibtexs, search=query)
 
 @app.route("/create_article")

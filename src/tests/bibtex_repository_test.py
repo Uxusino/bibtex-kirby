@@ -1,5 +1,6 @@
 from repositories.bibtex_repository import bibtex_repository
 from config import app
+from util import filter_bibtexs
 
 import unittest
 
@@ -80,3 +81,11 @@ class TestBibtexRepository(unittest.TestCase):
 
         self.assertEqual(result.data['author'], "Serial Updater")
 
+    def test_filtering_works(self):
+        with app.app_context():
+            self.repo.reset_db()
+            self.repo.create_bibtex(self.new_content)
+            result = self.repo.get_bibtexs()
+    
+        self.assertEqual(len(filter_bibtexs(result, "updating")), 1)
+        self.assertEqual(len(filter_bibtexs(result, "ååå")), 0)

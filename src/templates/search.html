@@ -22,7 +22,7 @@ Bibtex app
 <form action="/search" method="POST">
     <p>Search:<br>
     <input type="text" name="query"></p>
-    <input type="submit" value="Hae">
+    <input type="submit" value="Search">
 </form>
 
 <div id="modal" class="modal">
@@ -45,28 +45,6 @@ Bibtex app
     No results
   </div>
   {% else %}
-  <h3>Sort references by</h3>
-  <div class="sort-buttons">
-    <form action="/label=0" method="get" style="margin-left: 10px;">
-      <button type="submit" class="submit-btn">A-Z</button>
-    </form>
-    <form action="/label=1" method="get" style="margin-left: 10px;">
-      <button type="submit" class="submit-btn">Z-A</button>
-    </form>
-    <form action="/creation_time=0" method="get" style="margin-left: 10px;">
-      <button type="submit" class="submit-btn">Created first</button>
-    </form>
-    <form action="/creation_time=1" method="get" style="margin-left: 10px;">
-      <button type="submit" class="submit-btn">Created last</button>
-    </form>
-    <form action="/modified_time=0" method="get" style="margin-left: 10px;">
-      <button type="submit" class="submit-btn">Earliest modified</button>
-    </form>
-    <form action="/modified_time=1" method="get" style="margin-left: 10px;">
-      <button type="submit" class="submit-btn">Last modified</button>
-    </form>
-  </div>
-
   <ul>
     <ul class="bibtex-list">
       {% for bibtex in bibtexs %}
