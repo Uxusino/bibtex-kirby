@@ -17,13 +17,27 @@ def index(sort):
         reverse = int(reverse)
     else:
         sort, reverse = "creation_time", 1
-    print(sort)
+
     bibtexs = repo.get_bibtexs()
     if sort == "label":
         bibtexs.sort(key=lambda x: x.data["title"].lower(), reverse=reverse)
     else:
         bibtexs.sort(key=lambda x: getattr(x, sort), reverse=reverse)
     return render_template("index.html", bibtexs=bibtexs) 
+
+@app.route("/search", methods = ["POST"])
+def search():
+    query = request.form["query"]
+    if len(query) > 100:
+        return ("Query too long")
+    return redirect(f"/search/{query}")
+
+@app.route("/search/<query>")
+def search_releases(query):
+    bibtexs = repo.get_bibtexs()
+    bibtexs = list(filter(lambda b: query.lower() in b.data["author"].lower()
+                          or query.lower() in b.data["title"].lower(), bibtexs))
+    return render_template("/search.html", bibtexs=bibtexs, search=query)
 
 @app.route("/create_article")
 def create_article():

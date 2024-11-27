@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Bibtex app
+{% endblock %}
+
+{% block body %}
+
+<h2>Bibtex app</h2>
+<h3>Create a new reference:</h3>
+<a href="/create_article">Create article</a>
+<br>
+<a href="/create_book">Create book</a>
+<br>
+<a href="/create_inproceedings">Create inproceedings</a>
+<br>
+<a href="/create_misc">Create misc</a>
+<br>
+<br>
+<a href="/export">Export bibliography</a>
+
+<form action="/search" method="POST">
+    <p>Search:<br>
+    <input type="text" name="query"></p>
+    <input type="submit" value="Hae">
+</form>
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <form action="/update_bibtex" method="post">
+      <div id="modal-body" class="modal-body">
+        <div id="left-block"></div>
+        <div id="right-block"></div>
+      </div>
+        <input type="hidden" name="bibtex_id" id="modal-bibtex-id">
+        <button type="submit" class="submit-btn">Save</button>
+    </form>
+  </div>
+</div>
+
+<h2>Results for the search {{ search }}</h2>
+{% if bibtexs == [] %}
+  <div>
+    No results
+  </div>
+  {% else %}
+  <h3>Sort references by</h3>
+  <div class="sort-buttons">
+    <form action="/label=0" method="get" style="margin-left: 10px;">
+      <button type="submit" class="submit-btn">A-Z</button>
+    </form>
+    <form action="/label=1" method="get" style="margin-left: 10px;">
+      <button type="submit" class="submit-btn">Z-A</button>
+    </form>
+    <form action="/creation_time=0" method="get" style="margin-left: 10px;">
+      <button type="submit" class="submit-btn">Created first</button>
+    </form>
+    <form action="/creation_time=1" method="get" style="margin-left: 10px;">
+      <button type="submit" class="submit-btn">Created last</button>
+    </form>
+    <form action="/modified_time=0" method="get" style="margin-left: 10px;">
+      <button type="submit" class="submit-btn">Earliest modified</button>
+    </form>
+    <form action="/modified_time=1" method="get" style="margin-left: 10px;">
+      <button type="submit" class="submit-btn">Last modified</button>
+    </form>
+  </div>
+
+  <ul>
+    <ul class="bibtex-list">
+      {% for bibtex in bibtexs %}
+        <li class="bibtex-item">
+          <div class="bibtex-header">
+            <span class="bibtex-title"
+              name="bibtex-title"
+              data-bibtex='{{ bibtex.data | tojson }}'
+              data-id='{{ bibtex.id }}'>
+              {{ bibtex.data['title'] }}
+            </span>
+            <span class="bibtex-type">({{ bibtex.type }})</span>
+          </div>
+          {% if bibtex.data %}
+          <ul class="bibtex-details">
+            {% for k, v in bibtex.data.items() %}
+              {% if k != "title" %}
+                <li class="bibtex-detail">{{ k }}: {{ v }}</li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+          {% endif %}
+
+          <div class="reference-buttons">
+            <form action="/delete_bibtex" method="post" style="margin-left: 10px;">
+              <input type="hidden" name="bibtex_id" value="{{ bibtex.id }}">
+              <button type="submit" class="submit-btn">Delete</button>
+            </form>
+    
+            <button class="copy-btn" data-bibtex=' {{ bibtex | to_str }} '>Copy .bib</button>
+          </div>
+    
+        </li>
+      {% endfor %}
+    </ul>
+
+    <script src="/static/js/script.js"></script>
+    {% endif %}
+{% endblock %}
