@@ -39,3 +39,10 @@ poetry run invoke unittest
 ```
 poetry run invoke robot
 ```
+
+## Definition of Done
+- The user story and its acceptance criteria have been implemented.
+- Unit tests are complete and pass successfully.
+- (End-to-End) robot tests are complete and pass successfully.
+- The code passes the CI (Continuous Integration) process.
+- The code review is complete.
