@@ -4,9 +4,9 @@
 * [Product Backlog](https://docs.google.com/spreadsheets/d/1cU50iwuRWAjs2o86rISFNLVATdS2hZPp1eciziTLBD8/edit?gid=0#gid=0)
 * [Sprint Backlog](https://github.com/users/Uxusino/projects/3/views/1)
 
-## Asennus
+## Setup
 
-1. Riippuvuudet:
+1. Dependencies:
 
 ```
 poetry install
@@ -18,24 +18,33 @@ poetry install
 poetry run invoke build
 ```
 
-3. Käynnistys:
+If there is no .env file in the folder, this command will create a new one with custom settings.
+
+3. Start:
 
 ```
 poetry run invoke start
 ```
 
-## Muut komennot
+## Other commands
 
-### Testaus
+### Testing
 
-1. Yksikkötestaus:
+1. Unit testing:
 
 ```
 poetry run invoke unittest
 ```
 
-2. Robot-testit:
+2. Robot tests:
 
 ```
 poetry run invoke robot
 ```
+
+## Definition of Done
+- The user story and its acceptance criteria have been implemented.
+- Unit tests are complete and pass successfully.
+- End-to-End robot tests are complete and pass successfully.
+- The code passes the CI process.
+- The code review is complete.
