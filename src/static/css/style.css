@@ -67,6 +67,12 @@ body {
     align-items: center;
   }
 
+  .form-group label[for]:has(+ input.journal-input[required])::after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+}
+
   .submit-btn, .copy-btn {
     display: block;
     width: 100px;
