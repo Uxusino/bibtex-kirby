@@ -125,8 +125,8 @@ def bibtex_creation():
         repo.create_bibtex(new_bib)
         return redirect("/")
     except Exception as error:
-        flash(str(error))
-        return redirect("/create_" + type)
+        flash(f"Error: {error}")
+        return render_template(f"create_{type}.html", form_data=content)
     
 @app.route("/delete_bibtex", methods=["POST"])
 def delete_bibtex():
