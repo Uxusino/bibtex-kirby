@@ -19,12 +19,16 @@ Bibtex app
 <br>
 <a href="/export">Export bibliography</a>
 
-<ul>
-  {% if bibtexs == [] %}
-    <div>
-      You don't have references yet.
-    </div>
+{% if bibtexs == [] %}
+  <div>
+    You don't have references yet.
+  </div>
   {% else %}
+    <div>
+    <h3>References:</h3>
+    </div>
+
+<ul>
 
 <form action="/search" method="POST">
   <p>Search:<br>
