@@ -1,3 +1,25 @@
+"""
+This module defines the routes and views for a Flask web application that manages BibTeX entries.
+Routes:
+    / (GET): Displays the index page with a list of BibTeX entries, sorted by the specified criteria.
+    /create_article (GET): Displays the form to create a new article BibTeX entry.
+    /create_book (GET): Displays the form to create a new book BibTeX entry.
+    /create_inproceedings (GET): Displays the form to create a new inproceedings BibTeX entry.
+    /create_misc (GET): Displays the form to create a new miscellaneous BibTeX entry.
+    /create_bibtex (POST): Handles the creation of a new BibTeX entry.
+    /delete_bibtex (POST): Handles the deletion of a BibTeX entry.
+    /update_bibtex (POST): Handles the update of an existing BibTeX entry.
+    /export (GET): Exports all BibTeX entries as a .bib file.
+    /reset_db (GET): Resets the database (only available in test environment).
+Filters:
+    to_str: Converts a BibTeX entry to its string representation for use in templates.
+Dependencies:
+    Flask: Used for routing and rendering templates.
+    db_helper: Contains the function to reset the database.
+    repositories.bibtex_repository: Provides access to the BibTeX repository.
+    config: Contains the Flask app configuration and environment settings.
+    util: Contains utility functions, including request parsing.
+"""
 from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
 from repositories.bibtex_repository import bibtex_repository as repo
