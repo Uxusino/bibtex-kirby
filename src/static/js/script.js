@@ -8,6 +8,17 @@ const rightBlock = document.getElementById("right-block");
 const modalId = document.getElementById("modal-bibtex-id");
 
 const copyButtons = document.querySelectorAll(".copy-btn");
+const copyAllButton = document.getElementById("fetch-btn");
+
+async function fetchReferences() {
+  try {
+    const response = await fetch('/get_all');
+    const data = await response.text();
+    return data;
+  } catch (error) {
+    console.error('Error while fetching references:', error);
+  }
+}
 
 function addModalFields(key, jsondata) {
   const name = document.createElement("label");
@@ -77,4 +88,15 @@ copyButtons.forEach(button => {
         console.error("Error while copying .bib: ", err);
       });
   });
-})
+});
+
+copyAllButton.addEventListener("click", async function() {
+  const data = await fetchReferences();
+  navigator.clipboard.writeText(data)
+    .then(() => {
+      alert("Bibliography copied to clipboard");
+    })
+    .catch(err => {
+      console.error("Error while copying bibliography: ", err)
+    });
+});

@@ -169,6 +169,15 @@ def update_bibtex():
         flash(str(error))
         return redirect("/")
 
+@app.route("/get_all")
+def get_all() -> str:
+    file_content = ""
+    bibtexes = repo.get_bibtexs()
+    for bib in bibtexes:
+        file_content = file_content + str(bib) + "\n\n"
+    return file_content
+
+
 @app.route("/export")
 def export():
     """
@@ -183,10 +192,7 @@ def export():
         Response: A Flask Response object containing the BibTeX entries as a 
         plain text file with the filename 'bibliography.bib'.
     """
-    file_content = ""
-    bibtexes = repo.get_bibtexs()
-    for bib in bibtexes:
-        file_content = file_content + str(bib) + "\n\n"
+    file_content = get_all()
 
     return Response(
         file_content,

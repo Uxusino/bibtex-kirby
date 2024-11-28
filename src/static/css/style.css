@@ -73,7 +73,7 @@ body {
     font-weight: bold;
 }
 
-  .submit-btn, .copy-btn {
+  .submit-btn, .copy-btn, .export-btn {
     display: block;
     width: 100px;
     padding: 10px;
@@ -83,8 +83,14 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-
+    text-align: center;
+    text-decoration: none;
   }
+
+  .export-btn:hover, .submit-btn:hover, .copy-btn:hover {
+    background-color: #412d66;
+  }
+
   .journal-input {
     margin-left: 30px;
     margin-right: 150px;
