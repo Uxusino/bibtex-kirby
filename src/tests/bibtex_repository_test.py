@@ -89,14 +89,3 @@ class TestBibtexRepository(unittest.TestCase):
     
         self.assertEqual(len(filter_bibtexs(result, "updating")), 1)
         self.assertEqual(len(filter_bibtexs(result, "ååå")), 0)
-
-    #def test_get_bibtexs(self):
-        #with app.app_context():
-            #self.repo.reset_db()
-            #self.repo.create_bibtex(self.content)
-            #self.repo.create_bibtex(self.new_content)
-            #result = self.repo.get_bibtexs()
-
-       # self.assertEqual(len(result), 2)
-       # self.assertEqual(result[0].label, self.content['label'])
-       # self.assertEqual(result[1].label, self.new_content['label'])
