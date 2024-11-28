@@ -45,7 +45,6 @@ def validate_data(content: dict):
     except ValueError:
         raise UserInputError("Year must be an integer.")
 
-
 def generate_label(content: dict[str]) -> str:
     """
     Generates a label for a bibliographic entry based on the author, title, and year.
