@@ -19,7 +19,7 @@ Funktiot:
 from sqlalchemy import text
 from config import db, app
 
-table_name = "bibtex"
+TABLE_NAME = "bibtex"
 
 def table_exists(name):
   """
@@ -35,7 +35,7 @@ def table_exists(name):
     "SELECT EXISTS ("
     "  SELECT 1"
     "  FROM information_schema.tables"
-    f" WHERE table_name = '{name}'"
+    f" WHERE TABLE_NAME = '{name}'"
     ")"
   )
 
@@ -50,14 +50,14 @@ def reset_db():
   Clears all contents from the specified table in the database.
 
   This function constructs and executes a SQL DELETE statement to remove all
-  rows from the table specified by the global variable `table_name`. After
+  rows from the table specified by the global variable `TABLE_NAME`. After
   executing the statement, it commits the transaction to the database.
 
   Raises:
     SQLAlchemyError: If there is an error executing the SQL statement or committing the transaction.
   """
-  print(f"Clearing contents from table {table_name}")
-  sql = text(f"DELETE FROM {table_name}")
+  print(f"Clearing contents from table {TABLE_NAME}")
+  sql = text(f"DELETE FROM {TABLE_NAME}")
   db.session.execute(sql)
   db.session.commit()
 
@@ -76,16 +76,16 @@ def setup_db():
 
   The function commits the changes to the database after executing the SQL commands.
   """
-  if table_exists(table_name):
-    print(f"Table {table_name} exists, dropping")
-    sql = text(f"DROP TABLE {table_name}")
+  if table_exists(TABLE_NAME):
+    print(f"Table {TABLE_NAME} exists, dropping")
+    sql = text(f"DROP TABLE {TABLE_NAME}")
     db.session.execute(sql)
     db.session.commit()
 
   # Label must be unique
-  print(f"Creating table {table_name}")
+  print(f"Creating table {TABLE_NAME}")
   sql = text(
-    f'CREATE TABLE "{table_name}" ('
+    f'CREATE TABLE "{TABLE_NAME}" ('
     "  id SERIAL PRIMARY KEY, "
     "  label TEXT NOT NULL UNIQUE, "
     "  type TEXT NOT NULL, "

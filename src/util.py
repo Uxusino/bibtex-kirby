@@ -18,11 +18,6 @@ import re
 import string
 
 class UserInputError(Exception):
-    """
-    Exception raised for errors in the user input.
-    Attributes:
-        message -- explanation of the error
-    """
     pass
 
 def validate_data(content: dict):
@@ -42,8 +37,8 @@ def validate_data(content: dict):
         if year <= 1 or year > current_year:
             raise UserInputError("Invalid year.")
 
-    except ValueError:
-        raise UserInputError("Year must be an integer.")
+    except ValueError as exc:
+        raise UserInputError("Year must be an integer.") from exc
 
 def generate_label(content: dict[str]) -> str:
     """
@@ -83,7 +78,7 @@ def parse_request(content: dict[str]) -> dict:
     Raises:
         Exception: If the data validation fails.
     """
-    type = content.get("type")
+    ref_type = content.get("type")
     data = {k: v for k, v in content.items() if v and k != "type"}
     try:
         validate_data(content)
@@ -93,7 +88,7 @@ def parse_request(content: dict[str]) -> dict:
 
     new_bib = {
         "label": label,
-        "type": type,
+        "type": ref_type,
         "data": data
     }
 

@@ -11,7 +11,7 @@ from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
 from repositories.bibtex_repository import bibtex_repository as repo
 from config import app, test_env
-from util import parse_request, filter_bibtexs
+from util import parse_request, filter_bibtexs, UserInputError
 
 # Filter to turn bibtexes to strings inside the template
 @app.template_filter('to_str')
@@ -56,7 +56,7 @@ def index(sort):
 def search():
     query = request.form["query"]
     if len(query) > 100:
-        return ("Query too long")
+        return "Query too long"
     return redirect(f"/search/{query}")
 
 @app.route("/search/<query>")
@@ -118,16 +118,16 @@ def bibtex_creation():
         creation page with an error message on failure.
     """
     content = request.form.to_dict()
-    type = content.get("type")
-    
+    ref_type = content.get("type")
+
     try:
         new_bib = parse_request(content)
         repo.create_bibtex(new_bib)
         return redirect("/")
-    except Exception as error:
+    except UserInputError as error:
         flash(f"Error: {error}")
-        return render_template(f"create_{type}.html", form_data=content)
-    
+        return render_template(f"create_{ref_type}.html", form_data=content)
+
 @app.route("/delete_bibtex", methods=["POST"])
 def delete_bibtex():
     """
@@ -144,7 +144,6 @@ def delete_bibtex():
     repo.delete_bibtex(bib_tex_id)
     return redirect("/")
 
-# TODO: make possible to add missing fields in the future
 @app.route("/update_bibtex", methods=["POST"])
 def update_bibtex():
     """
@@ -159,17 +158,17 @@ def update_bibtex():
         Response: A redirect response to the home page on success or failure.
     """
     content = request.form.to_dict()
-    id = int(content.get("bibtex_id"))
+    ref_id = int(content.get("bibtex_id"))
     del content['bibtex_id']
 
     try:
         upd_bib = parse_request(content)
-        repo.update_bibtex(id, upd_bib)
+        repo.update_bibtex(ref_id, upd_bib)
         return redirect("/")
-    except Exception as error:
+    except UserInputError as error:
         flash(str(error))
         return redirect("/")
-    
+
 @app.route("/export")
 def export():
     """

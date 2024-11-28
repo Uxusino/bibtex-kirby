@@ -1,9 +1,10 @@
-from config import db
+import json
+from datetime import datetime
+
 from sqlalchemy import text
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
-import json
 
+from config import db
 from entities.bibtex import Bibtex
 
 class BibtexRepository:
@@ -12,14 +13,13 @@ class BibtexRepository:
 
     # Returns list of Bibtex instances
     def get_bibtexs(self) -> list[Bibtex]:
-        #todo fiksaa nää
         result = self._db.session.execute(text("SELECT * FROM bibtex"))
         bibtexs = result.fetchall()
         bibs = []
         for b in bibtexs:
             bibs.append(Bibtex(b))
         return bibs
-    
+
     def get_bibtex_by_label(self, label: str) -> Bibtex:
         sql = text("SELECT * FROM bibtex WHERE label = (:label)")
         result = self._db.session.execute(sql, {"label": label})
@@ -53,7 +53,7 @@ class BibtexRepository:
         self._db.session.commit()
         return label
 
-    def update_bibtex(self, id: int, content: dict[str | dict]):
+    def update_bibtex(self, ref_id: int, content: dict[str | dict]):
         current_time = datetime.now()
 
         sql = text(
@@ -68,19 +68,19 @@ class BibtexRepository:
             "label": content['label'],
             "modified_time": current_time,
             "data": json.dumps(content['data']),
-            "id": id
+            "id": ref_id
         }
         self._db.session.execute(sql, update)
         self._db.session.commit()
 
     def reset_db(self):
-        sql = text(f"DELETE FROM bibtex")
+        sql = text("DELETE FROM bibtex")
         self._db.session.execute(sql)
         self._db.session.commit()
 
-    def delete_bibtex(self, id: int):
+    def delete_bibtex(self, ref_id: int):
         sql = text("DELETE FROM bibtex WHERE id = :id")
-        self._db.session.execute(sql, {"id": id})
+        self._db.session.execute(sql, {"id": ref_id})
         self._db.session.commit()
 
 bibtex_repository = BibtexRepository(db)
