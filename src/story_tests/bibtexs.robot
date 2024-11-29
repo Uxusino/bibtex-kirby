@@ -350,17 +350,6 @@ User can sort references by modification earliest
     Should Be Equal  ${titles[1]}  First reference edited again
     Should Be Equal  ${titles[2]}  Second reference edited again
 
-User can copy .bib address
-    Go To  ${HOME_URL}
-    Click Link  Create article
-    Input Text  title  moikka
-    Input Text  author  moi
-    Input Text  journal  1
-    Input Text  year  2022
-    Click Button  Create
-    Click Button  Copy .bib
-    Alert Should Be Present
-
 User can create book
     Go To  ${HOME_URL}
     Click Link  Create book

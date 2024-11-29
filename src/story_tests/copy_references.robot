@@ -6,6 +6,17 @@ Test Setup       Reset Bibtexs
 Library  Collections
 
 *** Test Cases ***
+User can copy .bib
+    Go To  ${HOME_URL}
+    Click Link  Create article
+    Input Text  title  moikka
+    Input Text  author  moi
+    Input Text  journal  1
+    Input Text  year  2022
+    Click Button  Create
+    Click Button  Copy .bib
+    Alert Should Be Present
+
 User can copy all references
     Go To  ${HOME_URL}
     Click Link  Create article
