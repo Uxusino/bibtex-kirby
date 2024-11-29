@@ -10,6 +10,24 @@ const modalId = document.getElementById("modal-bibtex-id");
 const copyButtons = document.querySelectorAll(".copy-btn");
 const copyAllButton = document.getElementById("fetch-btn");
 
+const fields = {
+  "article": ["title", "author", "journal", "year", "volume", "number",
+    "pages", "doi", "url"
+  ],
+  "book": ["title", "author", "publisher", "year", "editor", "volume",
+    "series", "number", "address", "edition", "month", "note", "isbn"
+  ],
+  "inproceedings": ["title", "author", "booktitle", "year", "editor",
+    "volume", "number", "series", "pages", "address", "month",
+    "organization", "publisher", "note"
+  ],
+  "misc": ["title", "author", "howpublished", "year", "note", "key", "url"]
+};
+
+const requiredFields = ["title", "author", "journal", "year", "publisher",
+  "booktitle", "howpublished"
+];
+
 async function fetchReferences() {
   try {
     const response = await fetch('/get_all');
@@ -20,15 +38,18 @@ async function fetchReferences() {
   }
 }
 
-function addModalFields(key, jsondata) {
+function addModalFields(key, value) {
   const name = document.createElement("label");
   const content = document.createElement("input");
 
   name.textContent = `${key}`;
 
-  content.value = `${jsondata[key]}`;
-  content.name = `${key}`
+  content.value = `${value}`;
+  content.name = `${key}`;
   content.className = "modal-input-content";
+  if (requiredFields.includes(key)) {
+    content.required = true;
+  }
 
   leftBlock.appendChild(name);
   rightBlock.appendChild(content);
@@ -39,22 +60,19 @@ openModalButtons.forEach(button => {
     button.addEventListener("click", () => {
         const data = JSON.parse(button.getAttribute("data-bibtex"));
         const id = button.getAttribute("data-id");
+        const type = button.getAttribute("data-type");
 
         leftBlock.innerHTML = "";
         rightBlock.innerHTML = "";
 
-        const orderedKeys = ['title', 'author'];
+        const keys = fields[type];
 
-        // Puts title and author first
-        orderedKeys.forEach(k => {
+        keys.forEach(k => {
             if (data[k]) {
-                addModalFields(k, data);
+              addModalFields(k, data[k]);
             }
-        });
-
-        Object.entries(data).forEach(([k, v]) => {
-            if (!orderedKeys.includes(k)) {
-                addModalFields(k, data);
+            else {
+              addModalFields(k, "");
             }
         });
 

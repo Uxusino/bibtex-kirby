@@ -83,7 +83,8 @@ Bibtex app
           <span class="bibtex-title"
             name="bibtex-title"
             data-bibtex='{{ bibtex.data | tojson }}'
-            data-id='{{ bibtex.id }}'>
+            data-id='{{ bibtex.id }}'
+            data-type='{{ bibtex.type }}'>
             {{ bibtex.data['title'] }}
           </span>
           <span class="bibtex-type">({{ bibtex.type }})</span>
@@ -104,7 +105,7 @@ Bibtex app
             <button type="submit" class="submit-btn">Delete</button>
           </form>
   
-          <button class="copy-btn" data-bibtex=' {{ bibtex | to_str }} '>Copy .bib</button>
+          <button class="copy-btn" data-bibtex='{{ bibtex | to_str }}'>Copy .bib</button>
         </div>
   
       </li>
