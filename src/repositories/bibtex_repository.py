@@ -73,10 +73,34 @@ class BibtexRepository:
         self._db.session.execute(sql, update)
         self._db.session.commit()
 
-    def reset_db(self):
-        sql = text("DELETE FROM bibtex")
-        self._db.session.execute(sql)
+    def add_tag(self, bib_id: int, tag: str):
+        sql = text(
+            "INSERT INTO tags "
+            "  (name, bibtex_id) "
+            "  VALUES (:name, :bibtex_id)"
+        )
+        insert = {
+            "name": tag,
+            "bibtex_id": bib_id
+        }
+        self._db.session.execute(sql, insert)
         self._db.session.commit()
+
+    def get_tags_by_id(self, bib_id: int) -> list[str]:
+        sql = text(
+            "SELECT name FROM tags WHERE bibtex_id = (:bibtex_id)"
+        )
+        bibtex_id = {"bibtex_id": bib_id}
+        result = self._db.session.execute(sql, bibtex_id).fetchall()
+        tags = [tag[0] for tag in result]
+        return tags
+
+    def reset_db(self):
+        tables = ["bibtex", "tags"]
+        for table in tables:
+            sql = text(f"DELETE FROM {table}")
+            self._db.session.execute(sql)
+            self._db.session.commit()
 
     def delete_bibtex(self, ref_id: int):
         sql = text("DELETE FROM bibtex WHERE id = :id")

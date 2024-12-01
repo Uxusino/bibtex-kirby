@@ -89,3 +89,17 @@ class TestBibtexRepository(unittest.TestCase):
     
         self.assertEqual(len(filter_bibtexs(result, "updating")), 1)
         self.assertEqual(len(filter_bibtexs(result, "ååå")), 0)
+
+    def test_can_add_and_get_tags(self):
+        with app.app_context():
+            self.repo.reset_db()
+            label = self.repo.create_bibtex(self.content)
+            bib = self.repo.get_bibtex_by_label(label)
+            id = bib.id
+
+            self.repo.add_tag(id, "dummy tag")
+            self.repo.add_tag(id, "computer")
+
+            tags = self.repo.get_tags_by_id(id)
+
+        self.assertEqual(tags, ["dummy tag", "computer"])

@@ -6,6 +6,7 @@ class Bibtex:
         self.creation_time = content[3]
         self.modified_time = content[4]
         self.data = content[5]
+        self.tags = []
 
     def __str__(self):
         starting_string = f"@{self.type}{{{self.label},\n"
@@ -15,3 +16,6 @@ class Bibtex:
         starting_string = starting_string[:-2]
         starting_string = starting_string + "\n}"
         return starting_string
+
+    def set_tags(self, tags: list[str]):
+        self.tags = tags
