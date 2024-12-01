@@ -86,7 +86,7 @@ def setup_db():
       sql = text(
         f'CREATE TABLE "{table}" ('
         "  id SERIAL PRIMARY KEY, "
-        "  name TEXT NOT NULL UNIQUE, "
+        "  name TEXT NOT NULL, "
         "  bibtex_id SMALLINT "
         ")"
       )
