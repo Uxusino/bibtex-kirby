@@ -62,7 +62,7 @@ def generate_label(content: dict[str]) -> str:
     return label
 
 def parse_tags(tags_string: str) -> list[str]:
-    tags = re.split(',|, ', tags_string)
+    tags = re.split(', |,', tags_string)
     return tags
 
 def parse_request(content: dict[str]) -> dict:

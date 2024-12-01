@@ -77,17 +77,17 @@ Bibtex app
 </div>
 
 <h3>Sort by tags</h3>
-<div class="tags-block">
+<div class="tags-block" id="filter-tags">
   {% for tag in tags %}
     {% if tag %}
-      <div class="tag">{{ tag }}</div>
+      <div class="tag" data-tag='{{ tag }}'>{{ tag }}</div>
     {% endif %}
   {% endfor %}
 </div>
   
   <ul class="bibtex-list">
     {% for bibtex in bibtexs %}
-      <li class="bibtex-item">
+      <li class="bibtex-item" data-tags="{{ bibtex.tags | join(',') }}">
         <div class="bibtex-header">
           <span class="bibtex-title"
             name="bibtex-title"
@@ -112,7 +112,7 @@ Bibtex app
           <div class="tags-block">
             {% for tag in bibtex.tags %}
               {% if tag %}
-                <div class="tag">{{ tag }}</div>
+                <div class="tag" data-tag="{{ tag }}">{{ tag }}</div>
               {% endif %}
             {% endfor %}
           </div>

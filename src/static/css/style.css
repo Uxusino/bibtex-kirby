@@ -171,14 +171,21 @@ body {
 }
 
 .tag {
+  display: inline-block;
   background-color: lightgrey;
-  padding: 5px;
+  padding: 5px 10px;
+  margin: 5px;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .tag:hover {
   background-color: rgb(181, 178, 182);
+}
+
+.tag.selected {
+  background-color: #007bff;
+  color: #fff;
 }
 
 /* .delete-btn {

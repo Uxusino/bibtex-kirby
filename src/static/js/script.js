@@ -118,3 +118,60 @@ copyAllButton.addEventListener("click", async function() {
       console.error("Error while copying bibliography: ", err)
     });
 });
+
+// Listener for sorting by tags
+document.addEventListener("DOMContentLoaded", function() {
+  const filterTags = document.querySelectorAll("#filter-tags .tag");
+  const bibtexItems = document.querySelectorAll(".bibtex-item");
+
+  console.log(filterTags);
+
+  // Array for storing tags
+  let selectedTags = [];
+
+  // Function for filtering references
+  function filterBibtexItems() {
+    bibtexItems.forEach(item => {
+      const itemTags = item.getAttribute("data-tags") ? item.getAttribute("data-tags").split(",") : [];
+      
+      const trimmedTags = itemTags.map(tag => tag.trim());
+
+      const matches = selectedTags.every(tag => trimmedTags.includes(tag));
+
+      console.log("Item Tags:", trimmedTags, "Selected Tags:", selectedTags, "Matches:", matches);
+
+      // Show or hide by tags
+      if (matches) {
+        item.style.display = "block";
+      } else {
+        item.style.display = "none";
+      }
+    });
+  }
+
+  filterTags.forEach(tag => {
+    tag.addEventListener("click", function() {
+      const tagText = this.getAttribute("data-tag").trim();
+
+      console.log("Obtained tag:", tagText);
+
+      // Select or deselect tag
+      if (selectedTags.includes(tagText)) {
+        selectedTags = selectedTags.filter(t => t !== tagText);
+        this.classList.remove("selected");
+      } else {
+        selectedTags.push(tagText);
+        this.classList.add("selected");
+      }
+
+      filterBibtexItems();
+
+      // If no tag is selected, show everything
+      if (selectedTags.length == 0) {
+        bibtexItems.forEach(item => {
+          item.style.display = "block";
+        });
+      }
+    });
+  });
+});
