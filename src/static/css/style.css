@@ -163,5 +163,23 @@ body {
   margin-bottom: 20px;
 }
 
+.tags-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px;
+}
+
+.tag {
+  background-color: lightgrey;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tag:hover {
+  background-color: rgb(181, 178, 182);
+}
+
 /* .delete-btn {
 } */

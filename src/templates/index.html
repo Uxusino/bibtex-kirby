@@ -98,6 +98,14 @@ Bibtex app
           {% endfor %}
         </ul>
         {% endif %}
+        
+        {% if bibtex.tags %}
+          <div class="tags-block">
+            {% for tag in bibtex.tags %}
+              <div class="tag">{{ tag }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
 
         <div class="reference-buttons">
           <form action="/delete_bibtex" method="post" style="margin-left: 10px;">
