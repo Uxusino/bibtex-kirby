@@ -129,6 +129,8 @@ class BibtexRepository:
     def delete_bibtex(self, ref_id: int):
         sql = text("DELETE FROM bibtex WHERE id = :id")
         self._db.session.execute(sql, {"id": ref_id})
+        sql = text("DELETE FROM tags WHERE bibtex_id = (:bibtex_id)")
+        self._db.session.execute(sql, {"bibtex_id": ref_id})
         self._db.session.commit()
 
 bibtex_repository = BibtexRepository(db)
