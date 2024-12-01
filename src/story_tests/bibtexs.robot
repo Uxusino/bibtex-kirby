@@ -105,7 +105,7 @@ User can sort references by order of creation first
     Input Text  year  2023
     Click Button  Create
     Go To  ${HOME_URL}
-    Click Button  Created first 
+    Select From List By Label    id=sort-options    Created first
     ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
     ${titles}=  Create List
     FOR  ${element}  IN  @{elements}
@@ -139,7 +139,7 @@ User can sort references by order of creation last
     Input Text  year  2023
     Click Button  Create
     Go To  ${HOME_URL}
-    Click Button  Created last 
+    Select From List By Label    id=sort-options    Created last
     ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
     ${titles}=  Create List
     FOR  ${element}  IN  @{elements}
@@ -173,7 +173,7 @@ User can sort references alphabetically a-z
     Input Text  year  2023
     Click Button  Create
     Go To  ${HOME_URL}
-    Click Button  A-Z 
+    Select From List By Label    id=sort-options    A-Z
     ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
     ${titles}=  Create List
     FOR  ${element}  IN  @{elements}
@@ -208,7 +208,7 @@ User can sort references alphabetically z-a
     Input Text  year  2023
     Click Button  Create
     Go To  ${HOME_URL}
-    Click Button  Z-A 
+    Select From List By Label    id=sort-options    Z-A
     ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
     ${titles}=  Create List
     FOR  ${element}  IN  @{elements}
@@ -264,7 +264,7 @@ User can sort references by modification latest
 
     # Sort by earliest modified
     Go To  ${HOME_URL}
-    Click Button  xpath=//button[text()='Earliest modified']
+    Select From List By Label    id=sort-options    Earliest modified
     Sleep  1s
 
     # Verify the order
@@ -302,13 +302,13 @@ User can sort references by modification earliest
     Input Text  year  2023
     Click Button  Create
 
-    # Edit the first reference
+    # Edit the second reference
     Click Element  xpath=//span[@class='bibtex-title' and contains(text(), 'Second reference')]
     Input Text  title  Second reference edited again
     Click Button  Save
     Sleep  1s
 
-    # Edit the second reference
+    # Edit the first reference
     Click Element  xpath=//span[@class='bibtex-title' and contains(text(), 'First reference')]
     Input Text  title  First reference edited again
     Click Button  Save
@@ -322,8 +322,8 @@ User can sort references by modification earliest
 
     # Sort by earliest modified
     Go To  ${HOME_URL}
-    Click Button  xpath=//button[text()='Last modified']
-    Sleep  1s
+    Select From List By Label    id=sort-options    Earliest modified
+    Sleep  5s
 
     # Verify the order
     ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
@@ -333,9 +333,9 @@ User can sort references by modification earliest
         Append To List  ${titles}  ${text}
     END
     Log Many  ${titles}
-    Should Be Equal  ${titles[0]}  Third reference edited again
+    Should Be Equal  ${titles[0]}  Second reference edited again
     Should Be Equal  ${titles[1]}  First reference edited again
-    Should Be Equal  ${titles[2]}  Second reference edited again
+    Should Be Equal  ${titles[2]}  Third reference edited again
 
 User can create book
     Go To  ${HOME_URL}

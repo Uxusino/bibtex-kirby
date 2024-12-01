@@ -51,7 +51,7 @@ def index(sort):
         bibtexs.sort(key=lambda x: x.data["title"].lower(), reverse=reverse)
     else:
         bibtexs.sort(key=lambda x: getattr(x, sort), reverse=reverse)
-    return render_template("index.html", bibtexs=bibtexs, tags=tags)
+    return render_template("index.html", bibtexs=bibtexs, tags=tags, sort=f"{sort}={reverse}")
 
 @app.route("/search", methods = ["POST"])
 def search():
