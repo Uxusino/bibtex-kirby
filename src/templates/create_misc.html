@@ -60,6 +60,11 @@ Bibtex app
     <input type="text" name="url" class="journal-input" value="{{ request.form.get('url', '') }}">
   </div>
 
+  <div class="form-group">
+    <label for="url">Tags (divide by comma)</label>
+    <input type="text" name="tags" class="journal-input" value="{{ request.form.get('tags', '') }}">
+  </div>
+
   <div>
   <button type="submit" class="submit-btn">
     Create

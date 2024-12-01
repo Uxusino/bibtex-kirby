@@ -61,6 +61,10 @@ def generate_label(content: dict[str]) -> str:
     label = f"{author}_{title}_{year}"
     return label
 
+def parse_tags(tags_string: str) -> list[str]:
+    tags = re.split(',|, ', tags_string)
+    return tags
+
 def parse_request(content: dict[str]) -> dict:
     """
     Parses a request dictionary to generate a new bibliography entry.
@@ -79,7 +83,12 @@ def parse_request(content: dict[str]) -> dict:
         Exception: If the data validation fails.
     """
     ref_type = content.get("type")
-    data = {k: v for k, v in content.items() if v and k != "type"}
+    tags_string = content.get("tags")
+    if tags_string:
+        tags = parse_tags(tags_string)
+    else:
+        tags = None
+    data = {k: v for k, v in content.items() if v and k not in ["type", "tags"]}
     try:
         validate_data(content)
     except Exception as error:
@@ -89,7 +98,8 @@ def parse_request(content: dict[str]) -> dict:
     new_bib = {
         "label": label,
         "type": ref_type,
-        "data": data
+        "data": data,
+        "tags": tags
     }
 
     return new_bib

@@ -39,12 +39,13 @@ class BibtexRepository:
     #   "label": (str),
     #   "type": (str),
     #   "data": (dict),
-    #   "tags": (list[str])
+    #   "tags": (list[str]) or None
     #}
     # Returns id
-    def create_bibtex(self, content) -> str:
+    def create_bibtex(self, content: dict) -> str:
         current_time = datetime.now()
-        label = content['label']
+        label = content.get('label')
+        tags = content.get('tags')
 
         sql = text(
             "INSERT INTO bibtex "
@@ -61,8 +62,12 @@ class BibtexRepository:
         result = self._db.session.execute(sql, insert)
         bibtex_id = result.fetchone()[0]
 
+        if tags:
+            for tag in tags:
+                self.add_tag(bibtex_id, tag)
+
         self._db.session.commit()
-        
+
         return bibtex_id
 
     def update_bibtex(self, ref_id: int, content: dict[str | dict]):

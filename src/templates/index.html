@@ -99,10 +99,12 @@ Bibtex app
         </ul>
         {% endif %}
         
-        {% if bibtex.tags %}
+        {% if bibtex.tags and bibtex.tags != [] %}
           <div class="tags-block">
             {% for tag in bibtex.tags %}
-              <div class="tag">{{ tag }}</div>
+              {% if tag %}
+                <div class="tag">{{ tag }}</div>
+              {% endif %}
             {% endfor %}
           </div>
         {% endif %}
