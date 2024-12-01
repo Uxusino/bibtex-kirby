@@ -39,12 +39,11 @@ class TestBibtexRepository(unittest.TestCase):
     def test_delete_bibtex_deletes_the_bibtex(self):
         with app.app_context():
             self.repo.reset_db()
-            self.repo.create_bibtex(self.content)
-            result = self.repo.get_bibtex_by_label("test_bib")
-            self.repo.delete_bibtex(result.id)
-            result2 = self.repo.get_bibtexs()
+            new_bibtex_id = self.repo.create_bibtex(self.content)
+            self.repo.delete_bibtex(new_bibtex_id)
+            result = self.repo.get_bibtexs()
 
-        self.assertEqual(result2, [])
+        self.assertEqual(result, [])
 
     def test_bibtex_data_from_db_is_dict(self):
         with app.app_context():
@@ -73,10 +72,8 @@ class TestBibtexRepository(unittest.TestCase):
     def test_update_db(self):
         with app.app_context():
             self.repo.reset_db()
-            label = self.repo.create_bibtex(self.content)
-            bib = self.repo.get_bibtex_by_label(label)
-            id = bib.id
-            self.repo.update_bibtex(id, self.new_content)
+            new_bibtex_id = self.repo.create_bibtex(self.content)
+            self.repo.update_bibtex(new_bibtex_id, self.new_content)
             result = self.repo.get_bibtex_by_label(self.new_content['label'])
 
         self.assertEqual(result.data['author'], "Serial Updater")
@@ -93,13 +90,11 @@ class TestBibtexRepository(unittest.TestCase):
     def test_can_add_and_get_tags(self):
         with app.app_context():
             self.repo.reset_db()
-            label = self.repo.create_bibtex(self.content)
-            bib = self.repo.get_bibtex_by_label(label)
-            id = bib.id
+            new_bibtex_id = self.repo.create_bibtex(self.content)
 
-            self.repo.add_tag(id, "dummy tag")
-            self.repo.add_tag(id, "computer")
+            self.repo.add_tag(new_bibtex_id, "dummy tag")
+            self.repo.add_tag(new_bibtex_id, "computer")
 
-            bib = self.repo.get_bibtex_by_label(label)
+            bib = self.repo.get_bibtex_by_label(self.content['label'])
 
         self.assertEqual(bib.tags, ["dummy tag", "computer"])

@@ -38,9 +38,10 @@ class BibtexRepository:
     # {
     #   "label": (str),
     #   "type": (str),
-    #   "data": (dict)
+    #   "data": (dict),
+    #   "tags": (list[str])
     #}
-    # Returns label
+    # Returns id
     def create_bibtex(self, content) -> str:
         current_time = datetime.now()
         label = content['label']
@@ -48,7 +49,8 @@ class BibtexRepository:
         sql = text(
             "INSERT INTO bibtex "
             "  (label, type, creation_time, modified_time, data) "
-            "  VALUES (:label, :type, :creation_time, :modified_time, :data)")
+            "  VALUES (:label, :type, :creation_time, :modified_time, :data) "
+            "RETURNING id")
         insert = {
             "label": label,
             "type": content['type'],
@@ -56,9 +58,12 @@ class BibtexRepository:
             "modified_time": current_time,
             "data": json.dumps(content['data'])
         }
-        self._db.session.execute(sql, insert)
+        result = self._db.session.execute(sql, insert)
+        bibtex_id = result.fetchone()[0]
+
         self._db.session.commit()
-        return label
+        
+        return bibtex_id
 
     def update_bibtex(self, ref_id: int, content: dict[str | dict]):
         current_time = datetime.now()
