@@ -19,7 +19,7 @@ Funktiot:
 from sqlalchemy import text
 from config import db, app
 
-TABLE_NAME = "bibtex"
+TABLE_NAMES = ["bibtex", "tags"]
 
 def table_exists(name):
   """
@@ -56,47 +56,43 @@ def reset_db():
   Raises:
     SQLAlchemyError: If there is an error executing the SQL statement or committing the transaction.
   """
-  print(f"Clearing contents from table {TABLE_NAME}")
-  sql = text(f"DELETE FROM {TABLE_NAME}")
-  db.session.execute(sql)
-  db.session.commit()
-
-def setup_db():
-  """
-  Sets up the database by dropping the existing table if it exists and creating a new one.
-
-  This function checks if a table with the specified name exists. If it does, the table is dropped.
-  Then, a new table with the same name is created with the following columns:
-  - id: A serial primary key.
-  - label: A unique text field that cannot be null.
-  - type: A text field that cannot be null.
-  - creation_time: A timestamp field.
-  - modified_time: A timestamp field.
-  - data: A JSON field.
-
-  The function commits the changes to the database after executing the SQL commands.
-  """
-  if table_exists(TABLE_NAME):
-    print(f"Table {TABLE_NAME} exists, dropping")
-    sql = text(f"DROP TABLE {TABLE_NAME}")
+  for table in TABLE_NAMES:
+    print(f"Clearing contents from table {table}")
+    sql = text(f"DELETE FROM {table}")
     db.session.execute(sql)
     db.session.commit()
 
-  # Label must be unique
-  print(f"Creating table {TABLE_NAME}")
-  sql = text(
-    f'CREATE TABLE "{TABLE_NAME}" ('
-    "  id SERIAL PRIMARY KEY, "
-    "  label TEXT NOT NULL UNIQUE, "
-    "  type TEXT NOT NULL, "
-    "  creation_time TIMESTAMP, "
-    "  modified_time TIMESTAMP, "
-    "  data JSON "
-    ")"
-  )
+def setup_db():
+  for table in TABLE_NAMES:
+    if table_exists(table):
+      print(f"Table {table} exists, dropping")
+      sql = text(f"DROP TABLE {table}")
+      db.session.execute(sql)
+      db.session.commit()
 
-  db.session.execute(sql)
-  db.session.commit()
+    print(f"Creating table {table}")
+    if table == "bibtex":
+      sql = text(
+        f'CREATE TABLE "{table}" ('
+        "  id SERIAL PRIMARY KEY, "
+        "  label TEXT NOT NULL UNIQUE, "
+        "  type TEXT NOT NULL, "
+        "  creation_time TIMESTAMP, "
+        "  modified_time TIMESTAMP, "
+        "  data JSON "
+        ")"
+      )
+    if table == "tags":
+      sql = text(
+        f'CREATE TABLE "{table}" ('
+        "  id SERIAL PRIMARY KEY, "
+        "  name TEXT NOT NULL UNIQUE, "
+        "  bibtex_id SMALLINT "
+        ")"
+      )
+
+    db.session.execute(sql)
+    db.session.commit()
 
 if __name__ == "__main__":
     with app.app_context():
