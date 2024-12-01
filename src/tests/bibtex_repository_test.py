@@ -100,6 +100,6 @@ class TestBibtexRepository(unittest.TestCase):
             self.repo.add_tag(id, "dummy tag")
             self.repo.add_tag(id, "computer")
 
-            tags = self.repo.get_tags_by_id(id)
+            bib = self.repo.get_bibtex_by_label(label)
 
-        self.assertEqual(tags, ["dummy tag", "computer"])
+        self.assertEqual(bib.tags, ["dummy tag", "computer"])

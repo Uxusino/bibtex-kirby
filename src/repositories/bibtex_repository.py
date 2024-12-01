@@ -17,7 +17,11 @@ class BibtexRepository:
         bibtexs = result.fetchall()
         bibs = []
         for b in bibtexs:
-            bibs.append(Bibtex(b))
+            new_bibtex = Bibtex(b)
+            tags = self._get_tags_by_id(new_bibtex.id)
+            if len(tags) != 0:
+                new_bibtex.set_tags(tags)
+            bibs.append(new_bibtex)
         return bibs
 
     def get_bibtex_by_label(self, label: str) -> Bibtex:
@@ -25,6 +29,9 @@ class BibtexRepository:
         result = self._db.session.execute(sql, {"label": label})
         bibtex = result.fetchone()
         bib = Bibtex(bibtex)
+        tags = self._get_tags_by_id(bib.id)
+        if len(tags) != 0:
+            bib.set_tags(tags)
         return bib
 
     # Assuming that argument 'content' follows this dict structure:
@@ -86,7 +93,7 @@ class BibtexRepository:
         self._db.session.execute(sql, insert)
         self._db.session.commit()
 
-    def get_tags_by_id(self, bib_id: int) -> list[str]:
+    def _get_tags_by_id(self, bib_id: int) -> list[str]:
         sql = text(
             "SELECT name FROM tags WHERE bibtex_id = (:bibtex_id)"
         )
