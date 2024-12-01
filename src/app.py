@@ -67,42 +67,18 @@ def search_releases(query):
 
 @app.route("/create_article")
 def create_article():
-    """
-    Renders the template for creating a new article.
-
-    Returns:
-        Response: The rendered HTML template for creating an article.
-    """
     return render_template("create_article.html")
 
 @app.route("/create_book")
 def create_book():
-    """
-    Renders the template for creating a book.
-
-    Returns:
-        Response: The rendered HTML template for creating a book.
-    """
     return render_template("create_book.html")
 
 @app.route("/create_inproceedings")
 def create_inproceedings():
-    """
-    Renders the template for creating an inproceedings entry.
-
-    Returns:
-        A rendered HTML template for creating an inproceedings entry.
-    """
     return render_template("create_inproceedings.html")
 
 @app.route("/create_misc")
 def create_misc():
-    """
-    Renders the 'create_misc.html' template.
-
-    Returns:
-        Response: The rendered HTML template for creating miscellaneous entries.
-    """
     return render_template("create_misc.html")
 
 @app.route("/create_bibtex", methods=["POST"])
