@@ -46,11 +46,12 @@ def index(sort):
         sort, reverse = "creation_time", 1
 
     bibtexs = repo.get_bibtexs()
+    tags = repo.get_all_tags()
     if sort == "label":
         bibtexs.sort(key=lambda x: x.data["title"].lower(), reverse=reverse)
     else:
         bibtexs.sort(key=lambda x: getattr(x, sort), reverse=reverse)
-    return render_template("index.html", bibtexs=bibtexs)
+    return render_template("index.html", bibtexs=bibtexs, tags=tags)
 
 @app.route("/search", methods = ["POST"])
 def search():

@@ -34,6 +34,13 @@ class BibtexRepository:
             bib.set_tags(tags)
         return bib
 
+    def get_all_tags(self) -> list[str]:
+        sql = text("SELECT DISTINCT name FROM tags")
+        result = self._db.session.execute(sql)
+        tags = result.fetchall()
+        tags_list = [tag[0] for tag in tags]
+        return tags_list
+
     # Assuming that argument 'content' follows this dict structure:
     # {
     #   "label": (str),

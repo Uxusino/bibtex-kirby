@@ -75,6 +75,15 @@ Bibtex app
     <button type="submit" class="submit-btn">Last modified</button>
   </form>
 </div>
+
+<h3>Sort by tags</h3>
+<div class="tags-block">
+  {% for tag in tags %}
+    {% if tag %}
+      <div class="tag">{{ tag }}</div>
+    {% endif %}
+  {% endfor %}
+</div>
   
   <ul class="bibtex-list">
     {% for bibtex in bibtexs %}
