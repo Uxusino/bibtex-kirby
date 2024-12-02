@@ -107,3 +107,15 @@ def parse_request(content: dict[str]) -> dict:
 def filter_bibtexs(bibtexs, query):
     return list(filter(lambda b: query.lower() in b.data["author"].lower()
                           or query.lower() in b.data["title"].lower(), bibtexs))
+
+def sort_bibtexs(bibtexs, sort, reverse):
+    if sort == "label":
+        bibtexs.sort(key=lambda x: x.data["title"].lower(), reverse=reverse)
+    elif sort == "year":
+        bibtexs.sort(
+            key = lambda x: (x.data["year"] if reverse == 0 else -int(x.data["year"]),
+            x.data["title"].lower()),
+        )
+    else:
+        bibtexs.sort(key=lambda x: getattr(x, sort), reverse=reverse)
+    return bibtexs

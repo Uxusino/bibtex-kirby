@@ -337,6 +337,86 @@ User can sort references by modification earliest
     Should Be Equal  ${titles[1]}  First reference edited again
     Should Be Equal  ${titles[2]}  Third reference edited again
 
+User can sort references by year
+    Go To  ${HOME_URL}
+    Click Link  Create article
+    Input Text  title  b
+    Input Text  author  First Author
+    Input Text  journal  Journal 1
+    Input Text  year  2023
+    Click Button  Create
+    Go To  ${HOME_URL}
+    Click Link  Create article
+    Input Text  title  a
+    Input Text  author  Second Author
+    Input Text  journal  Journal 2
+    Input Text  year  2023
+    Click Button  Create
+    Go To  ${HOME_URL}
+    Click Link  Create article
+    Input Text  title  c
+    Input Text  author  Third Author
+    Input Text  journal  Journal 3
+    Input Text  year  2010
+    Click Button  Create
+
+    # Sort by earliest modified
+    Go To  ${HOME_URL}
+    Select From List By Label    id=sort-options    Year (oldest first)
+    Sleep  1s
+
+    # Verify the order
+    ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
+    ${titles}=  Create List
+    FOR  ${element}  IN  @{elements}
+        ${text}=  Get Text  ${element}
+        Append To List  ${titles}  ${text}
+    END
+    Log Many  ${titles}
+    Should Be Equal  ${titles[0]}  c
+    Should Be Equal  ${titles[1]}  a
+    Should Be Equal  ${titles[2]}  b
+
+User can sort references by year in reversed order
+    Go To  ${HOME_URL}
+    Click Link  Create article
+    Input Text  title  b
+    Input Text  author  First Author
+    Input Text  journal  Journal 1
+    Input Text  year  2023
+    Click Button  Create
+    Go To  ${HOME_URL}
+    Click Link  Create article
+    Input Text  title  a
+    Input Text  author  Second Author
+    Input Text  journal  Journal 2
+    Input Text  year  2023
+    Click Button  Create
+    Go To  ${HOME_URL}
+    Click Link  Create article
+    Input Text  title  c
+    Input Text  author  Third Author
+    Input Text  journal  Journal 3
+    Input Text  year  2010
+    Click Button  Create
+
+    # Sort by earliest modified
+    Go To  ${HOME_URL}
+    Select From List By Label    id=sort-options    Year (newest first)
+    Sleep  1s
+
+    # Verify the order
+    ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
+    ${titles}=  Create List
+    FOR  ${element}  IN  @{elements}
+        ${text}=  Get Text  ${element}
+        Append To List  ${titles}  ${text}
+    END
+    Log Many  ${titles}
+    Should Be Equal  ${titles[0]}  a
+    Should Be Equal  ${titles[1]}  b
+    Should Be Equal  ${titles[2]}  c
+
 User can create book
     Go To  ${HOME_URL}
     Click Link  Create book

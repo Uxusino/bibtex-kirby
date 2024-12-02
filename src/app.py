@@ -11,7 +11,7 @@ from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
 from repositories.bibtex_repository import bibtex_repository as repo
 from config import app, test_env
-from util import parse_request, filter_bibtexs, UserInputError
+from util import parse_request, filter_bibtexs, sort_bibtexs, UserInputError
 
 # Filter to turn bibtexes to strings inside the template
 @app.template_filter('to_str')
@@ -47,10 +47,7 @@ def index(sort):
 
     bibtexs = repo.get_bibtexs()
     tags = repo.get_all_tags()
-    if sort == "label":
-        bibtexs.sort(key=lambda x: x.data["title"].lower(), reverse=reverse)
-    else:
-        bibtexs.sort(key=lambda x: getattr(x, sort), reverse=reverse)
+    bibtexs = sort_bibtexs(bibtexs, sort, reverse)
     return render_template("index.html", bibtexs=bibtexs, tags=tags, sort=f"{sort}={reverse}")
 
 @app.route("/search", methods = ["POST"])
