@@ -10,6 +10,11 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
+    <div class="navbar">
+      {% if request.path != '/' %}
+      <a href="/" class="home-btn">Home</a>
+      {% endif %}
+    </div>
     {% block body %}{% endblock %}
   </body>
 </html>
