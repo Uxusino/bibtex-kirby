@@ -49,3 +49,8 @@ poetry run invoke robot
 - End-to-End robot tests are complete and pass successfully.
 - The code passes the CI process.
 - The code review is complete.
+
+## License
+
+This project is released under the [Unlicense](LICENSE).
+
