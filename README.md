@@ -4,6 +4,7 @@
 * [Product Backlog](https://docs.google.com/spreadsheets/d/1cU50iwuRWAjs2o86rISFNLVATdS2hZPp1eciziTLBD8/edit?gid=0#gid=0)
 * [Sprint Backlog](https://github.com/users/Uxusino/projects/3/views/1)
 * [Burndown Chart](https://docs.google.com/spreadsheets/d/1cU50iwuRWAjs2o86rISFNLVATdS2hZPp1eciziTLBD8/edit?gid=334129755#gid=334129755)
+* [Coverage](https://github.com/Uxusino/bibtex-kirby/blob/main/src/tests/index.html)
 
 ## Setup
 
