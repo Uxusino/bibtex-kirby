@@ -83,7 +83,7 @@ User can sort references by order of creation
     Should Be Equal  ${titles[1]}  B
     Should Be Equal  ${titles[2]}  C
 
-    Wait For Condition    return document.readyState=="complete"
+    Go To  ${HOME_URL}
     Select From List By Label    id=sort-options    Created last
     Wait For Condition    return document.readyState=="complete"
     ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
