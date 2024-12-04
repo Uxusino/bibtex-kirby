@@ -46,7 +46,7 @@ User can search references
     Click Button  Search
     Page Should Contain  Creating random articles.
 
-User can sort references by order of creation first
+User can sort references by order of creation
     Go To  ${HOME_URL}
     Click Link  Create article
     Input Text  title  A
@@ -80,29 +80,7 @@ User can sort references by order of creation first
     Should Be Equal  ${titles[0]}  A
     Should Be Equal  ${titles[1]}  B
     Should Be Equal  ${titles[2]}  C
-User can sort references by order of creation last
-    Go To  ${HOME_URL}
-    Click Link  Create article
-    Input Text  title  A1
-    Input Text  author  Ensimmäinen, 1.
-    Input Text  journal  Journal about creating articles
-    Input Text  year  2023
-    Click Button  Create
-    Go To  ${HOME_URL}
-    Click Link  Create article
-    Input Text  title  B2
-    Input Text  author  Toinen, 2.
-    Input Text  journal  Journal about creating articles
-    Input Text  year  2023
-    Click Button  Create
-    Go To  ${HOME_URL}
-    Click Link  Create article
-    Input Text  title  C3
-    Input Text  author  Kolmas, 3.
-    Input Text  journal  Journal about creating articles
-    Input Text  year  2023
-    Click Button  Create
-    Go To  ${HOME_URL}
+
     Select From List By Label    id=sort-options    Created last
     ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
     ${titles}=  Create List
@@ -111,10 +89,11 @@ User can sort references by order of creation last
         Append To List  ${titles}  ${text}
     END
     Log Many  ${titles}
-    Should Be Equal  ${titles[0]}  C3
-    Should Be Equal  ${titles[1]}  B2
-    Should Be Equal  ${titles[2]}  A1
-User can sort references alphabetically a-z
+    Should Be Equal  ${titles[0]}  C
+    Should Be Equal  ${titles[1]}  B
+    Should Be Equal  ${titles[2]}  A
+
+User can sort references alphabetically
     Go To  ${HOME_URL}
     Click Link  Create article
     Input Text  title  CC
@@ -149,28 +128,6 @@ User can sort references alphabetically a-z
     Should Be Equal  ${titles[1]}  CC
     Should Be Equal  ${titles[2]}  DD
 
-User can sort references alphabetically z-a
-    Go To  ${HOME_URL}
-    Click Link  Create article
-    Input Text  title  CC
-    Input Text  author  Ensimmäinen, 1.
-    Input Text  journal  Journal about creating articles
-    Input Text  year  2023
-    Click Button  Create
-    Go To  ${HOME_URL}
-    Click Link  Create article
-    Input Text  title  AA
-    Input Text  author  Toinen, 2.
-    Input Text  journal  Journal about creating articles
-    Input Text  year  2023
-    Click Button  Create
-    Go To  ${HOME_URL}
-    Click Link  Create article
-    Input Text  title  DD
-    Input Text  author  Kolmas, 3.
-    Input Text  journal  Journal about creating articles
-    Input Text  year  2023
-    Click Button  Create
     Go To  ${HOME_URL}
     Select From List By Label    id=sort-options    Z-A
     ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
@@ -183,65 +140,6 @@ User can sort references alphabetically z-a
     Should Be Equal  ${titles[0]}  DD
     Should Be Equal  ${titles[1]}  CC
     Should Be Equal  ${titles[2]}  AA
-
-
-User can sort references by modification latest
-    Go To  ${HOME_URL}
-    Click Link  Create article
-    Input Text  title  First reference
-    Input Text  author  First Author
-    Input Text  journal  Journal 1
-    Input Text  year  2023
-    Click Button  Create
-    Go To  ${HOME_URL}
-    Click Link  Create article
-    Input Text  title  Second reference
-    Input Text  author  Second Author
-    Input Text  journal  Journal 2
-    Input Text  year  2023
-    Click Button  Create
-    Go To  ${HOME_URL}
-    Click Link  Create article
-    Input Text  title  Third reference
-    Input Text  author  Third Author
-    Input Text  journal  Journal 3
-    Input Text  year  2023
-    Click Button  Create
-
-    # Edit the first reference
-    Click Element  xpath=//span[@class='bibtex-title' and contains(text(), 'First reference')]
-    Input Text  title  First reference edited
-    Click Button  Save
-    Sleep  1s
-
-    # Edit the second reference
-    Click Element  xpath=//span[@class='bibtex-title' and contains(text(), 'Second reference')]
-    Input Text  title  Second reference edited
-    Click Button  Save
-    Sleep  1s
-
-    # Edit the third reference
-    Click Element  xpath=//span[@class='bibtex-title' and contains(text(), 'Third reference')]
-    Input Text  title  Third reference edited
-    Click Button  Save
-    Sleep  1s
-
-    # Sort by earliest modified
-    Go To  ${HOME_URL}
-    Select From List By Label    id=sort-options    Earliest modified
-    Sleep  1s
-
-    # Verify the order
-    ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
-    ${titles}=  Create List
-    FOR  ${element}  IN  @{elements}
-        ${text}=  Get Text  ${element}
-        Append To List  ${titles}  ${text}
-    END
-    Log Many  ${titles}
-    Should Be Equal  ${titles[0]}  First reference edited
-    Should Be Equal  ${titles[1]}  Second reference edited
-    Should Be Equal  ${titles[2]}  Third reference edited
 
 User can sort references by modification earliest 
     Go To  ${HOME_URL}
@@ -324,7 +222,6 @@ User can sort references by year
     Input Text  year  2010
     Click Button  Create
 
-    # Sort by earliest modified
     Go To  ${HOME_URL}
     Select From List By Label    id=sort-options    Year (oldest first)
     Sleep  1s
@@ -341,30 +238,6 @@ User can sort references by year
     Should Be Equal  ${titles[1]}  a
     Should Be Equal  ${titles[2]}  b
 
-User can sort references by year in reversed order
-    Go To  ${HOME_URL}
-    Click Link  Create article
-    Input Text  title  b
-    Input Text  author  First Author
-    Input Text  journal  Journal 1
-    Input Text  year  2023
-    Click Button  Create
-    Go To  ${HOME_URL}
-    Click Link  Create article
-    Input Text  title  a
-    Input Text  author  Second Author
-    Input Text  journal  Journal 2
-    Input Text  year  2023
-    Click Button  Create
-    Go To  ${HOME_URL}
-    Click Link  Create article
-    Input Text  title  c
-    Input Text  author  Third Author
-    Input Text  journal  Journal 3
-    Input Text  year  2010
-    Click Button  Create
-
-    # Sort by earliest modified
     Go To  ${HOME_URL}
     Select From List By Label    id=sort-options    Year (newest first)
     Sleep  1s
@@ -395,4 +268,3 @@ User can navigate home from all pages
     Click Link  Create misc
     Click Element  xpath=//a[text()='Home']
     Page Should Contain  Create misc
-    #Muutos joka ei tee mitään...

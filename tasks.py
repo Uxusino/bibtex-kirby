@@ -1,6 +1,6 @@
 import os
 from invoke import task
-from dotenv import load_dotenv, set_key, dotenv_values
+from dotenv import set_key
 
 ENV_FILE = ".env"
 
@@ -35,4 +35,4 @@ def unittest(ctx):
 
 @task
 def robot(ctx):
-    ctx.run("robot src/story_tests")
+    ctx.run("robot --variable HEADLESS:true src/story_tests")
