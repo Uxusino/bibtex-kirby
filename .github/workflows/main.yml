@@ -1,62 +1,3 @@
-# name: CI
-
-# env:
-#   DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres
-#   TEST_ENV: true
-#   SECRET_KEY: sekret
-
-# on:
-#   push:
-#     branches: [main]
-#   pull_request:
-#     branches: [main]
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-
-#     services:
-#       postgres:
-#         image: postgres
-#         env:
-#           POSTGRES_PASSWORD: postgres
-#         options: >-
-#           --health-cmd pg_isready
-#           --health-interval 10s
-#           --health-timeout 5s
-#           --health-retries 5
-#         ports:
-#           - 5432:5432
-
-#     steps:
-#       - uses: actions/checkout@v4
-#       - name: Set up Python 3.10
-#         uses: actions/setup-python@v5
-#         with:
-#           python-version: '3.10'
-#       - name: Install Poetry
-#         run: pip install poetry
-#       - name: Install dependencies
-#         run: poetry install
-#       - name: Setup database
-#         run: poetry run python3 src/db_helper.py
-#       - name: Run unit tests
-#         run: poetry run pytest src/tests
-#       - name: Setup chromedriver
-#         uses: nanasess/setup-chromedriver@master
-#       - run: |
-#           export DISPLAY=:99
-#           chromedriver --url-base=/wd/hub &
-#           sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
-#       - name: Run coverage
-#         run: |
-#           poetry run coverage run -m pytest src/tests
-#           poetry run coverage report
-#       - name: Run robot tests
-#         run: bash run_robot_tests.sh
-#       - name: Run pylint
-#         run: poetry run pylint src
-      
 name: CI
 
 env:
@@ -107,6 +48,8 @@ jobs:
         run: poetry run coverage report
       - name: Generate HTML coverage report
         run: poetry run coverage html
+      - name: Create docs directory
+        run: mkdir -p docs
       - name: Copy coverage report to docs
         run: cp -r htmlcov/* docs/
       - name: Create gh-pages branch if not exists
@@ -126,7 +69,7 @@ jobs:
       - name: Setup chromedriver
         uses: nanasess/setup-chromedriver@master
         with:
-          version: latest
+          chromedriver-version: latest
       - run: |
           export DISPLAY=:99
           chromedriver --url-base=/wd/hub &
