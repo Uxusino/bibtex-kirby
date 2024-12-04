@@ -79,6 +79,15 @@ def create_inproceedings():
 def create_misc():
     return render_template("create_misc.html")
 
+@app.route("/create_from_acm")
+def create_from_acm():
+    return render_template("create_from_acm.html")
+
+# @app.route("/create_bibtex_from_link", methods=["POST"])
+# def create_bibtecx_from_link():
+#     acm_url = request.form.get("acm_link")
+
+
 @app.route("/create_bibtex", methods=["POST"])
 def bibtex_creation():
     """
