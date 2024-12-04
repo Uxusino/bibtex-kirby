@@ -75,7 +75,7 @@ def setup_db():
       sql = text(
         f'CREATE TABLE "{table}" ('
         "  id SERIAL PRIMARY KEY, "
-        "  label TEXT NOT NULL UNIQUE, "
+        "  label TEXT NOT NULL, "
         "  type TEXT NOT NULL, "
         "  creation_time TIMESTAMP, "
         "  modified_time TIMESTAMP, "
