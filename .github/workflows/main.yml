@@ -54,5 +54,5 @@ jobs:
         run: poetry run pylint src
       - name: Run coverage
         run: |
-          poetry run coverage run --source=src -m pytest src/tests
+          poetry run coverage run -m pytest src/tests
           poetry run coverage report
