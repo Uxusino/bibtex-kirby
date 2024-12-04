@@ -380,3 +380,18 @@ User can sort references by year in reversed order
     Should Be Equal  ${titles[0]}  a
     Should Be Equal  ${titles[1]}  b
     Should Be Equal  ${titles[2]}  c
+
+User can navigate home from all pages
+    Go To  ${HOME_URL}
+    Click Link  Create article
+    Click Element  xpath=//a[text()='Home']
+    Page Should Contain  Create article
+    Click Link  Create book
+    Click Element  xpath=//a[text()='Home']
+    Page Should Contain  Create book
+    Click Link  Create inproceedings
+    Click Element  xpath=//a[text()='Home']
+    Page Should Contain  Create inproceedings
+    Click Link  Create misc
+    Click Element  xpath=//a[text()='Home']
+    Page Should Contain  Create misc

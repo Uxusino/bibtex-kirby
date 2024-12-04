@@ -83,7 +83,7 @@ class TestBibtexRepository(unittest.TestCase):
             self.repo.reset_db()
             self.repo.create_bibtex(self.new_content)
             result = self.repo.get_bibtexs()
-    
+
         self.assertEqual(len(filter_bibtexs(result, "updating")), 1)
         self.assertEqual(len(filter_bibtexs(result, "ååå")), 0)
 
@@ -98,3 +98,46 @@ class TestBibtexRepository(unittest.TestCase):
             bib = self.repo.get_bibtex_by_label(self.content['label'])
 
         self.assertEqual(bib.tags, ["dummy tag", "computer"])
+
+    def test_get_all_tags(self):
+        with app.app_context():
+            self.repo.reset_db()
+            new_bibtex_id = self.repo.create_bibtex(self.content)
+            self.repo.add_tag(new_bibtex_id, "dummy tag")
+            self.repo.add_tag(new_bibtex_id, "computer")
+            tags = self.repo.get_all_tags()
+
+        self.assertIn("dummy tag", tags)
+        self.assertIn("computer", tags)
+
+    def test_create_bibtex_with_tags(self):
+        with app.app_context():
+            self.repo.reset_db()
+            content_with_tags = self.content.copy()
+            content_with_tags['tags'] = ["tag1", "tag2"]
+            new_bibtex_id = self.repo.create_bibtex(content_with_tags)
+            bib = self.repo.get_bibtex_by_label(self.content['label'])
+
+        self.assertEqual(bib.tags, ["tag1", "tag2"])
+    
+    def test_get_bibtexs(self):
+        with app.app_context():
+            self.repo.reset_db()
+            bibtex_id_1 = self.repo.create_bibtex(self.content)
+            self.repo.add_tag(bibtex_id_1, "tag1")
+            bibtex_id_2 = self.repo.create_bibtex(self.new_content)
+            self.repo.add_tag(bibtex_id_2, "tag2")
+            self.repo.add_tag(bibtex_id_2, "tag3")
+
+            result = self.repo.get_bibtexs()
+
+        self.assertEqual(len(result), 2)
+
+        self.assertEqual(result[0].label, self.content['label'])
+        self.assertEqual(result[0].tags, ["tag1"])
+
+        self.assertEqual(result[1].label, self.new_content['label'])
+        self.assertEqual(result[1].tags, ["tag2", "tag3"])
+
+if __name__ == '__main__':
+    unittest.main()
