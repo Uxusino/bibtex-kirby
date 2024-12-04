@@ -26,4 +26,3 @@ Open And Configure Browser
 
 Reset Bibtexs
     Go To  ${RESET_URL}
-

@@ -69,6 +69,7 @@ User can sort references by order of creation
     Input Text  year  2023
     Click Button  Create
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Select From List By Label    id=sort-options    Created first
     ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
     ${titles}=  Create List
@@ -81,6 +82,7 @@ User can sort references by order of creation
     Should Be Equal  ${titles[1]}  B
     Should Be Equal  ${titles[2]}  C
 
+    Wait For Condition    return document.readyState=="complete"
     Select From List By Label    id=sort-options    Created last
     ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
     ${titles}=  Create List
@@ -116,6 +118,7 @@ User can sort references alphabetically
     Input Text  year  2023
     Click Button  Create
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Select From List By Label    id=sort-options    A-Z
     ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
     ${titles}=  Create List
@@ -129,6 +132,7 @@ User can sort references alphabetically
     Should Be Equal  ${titles[2]}  DD
 
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Select From List By Label    id=sort-options    Z-A
     ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
     ${titles}=  Create List
