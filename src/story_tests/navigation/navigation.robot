@@ -71,6 +71,7 @@ User can sort references by order of creation
     Go To  ${HOME_URL}
     Wait For Condition    return document.readyState=="complete"
     Select From List By Label    id=sort-options    Created first
+    Wait For Condition    return document.readyState=="complete"
     ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
     ${titles}=  Create List
     FOR  ${element}  IN  @{elements}
@@ -84,6 +85,7 @@ User can sort references by order of creation
 
     Wait For Condition    return document.readyState=="complete"
     Select From List By Label    id=sort-options    Created last
+    Wait For Condition    return document.readyState=="complete"
     ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
     ${titles}=  Create List
     FOR  ${element}  IN  @{elements}
@@ -120,6 +122,7 @@ User can sort references alphabetically
     Go To  ${HOME_URL}
     Wait For Condition    return document.readyState=="complete"
     Select From List By Label    id=sort-options    A-Z
+    Wait For Condition    return document.readyState=="complete"
     ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
     ${titles}=  Create List
     FOR  ${element}  IN  @{elements}
@@ -134,6 +137,7 @@ User can sort references alphabetically
     Go To  ${HOME_URL}
     Wait For Condition    return document.readyState=="complete"
     Select From List By Label    id=sort-options    Z-A
+    Wait For Condition    return document.readyState=="complete"
     ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
     ${titles}=  Create List
     FOR  ${element}  IN  @{elements}
