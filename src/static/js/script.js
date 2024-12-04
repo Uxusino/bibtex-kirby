@@ -6,7 +6,6 @@ const modalBody = document.getElementById("modal-body");
 const leftBlock = document.getElementById("left-block");
 const rightBlock = document.getElementById("right-block");
 const modalId = document.getElementById("modal-bibtex-id");
-const goToReferenceBtn = document.getElementById("go-to-reference-btn");
 
 const copyButtons = document.querySelectorAll(".copy-btn");
 const copyAllButton = document.getElementById("fetch-btn");
@@ -58,49 +57,41 @@ function addModalFields(key, value) {
 
 // Each bibtex title can open modal
 openModalButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    const data = JSON.parse(button.getAttribute("data-bibtex"));
-    const id = button.getAttribute("data-id");
-    const type = button.getAttribute("data-type");
+    button.addEventListener("click", () => {
+        const data = JSON.parse(button.getAttribute("data-bibtex"));
+        const id = button.getAttribute("data-id");
+        const type = button.getAttribute("data-type");
 
-    leftBlock.innerHTML = "";
-    rightBlock.innerHTML = "";
+        leftBlock.innerHTML = "";
+        rightBlock.innerHTML = "";
 
-    const keys = fields[type];
-    keys.forEach(key => {
-      if (data[key]) {
-        addModalFields(key, data[key]);
-      }
-    });
+        const keys = fields[type];
 
-    modalId.value = id;
+        keys.forEach(k => {
+            if (data[k]) {
+              addModalFields(k, data[k]);
+            }
+            else {
+              addModalFields(k, "");
+            }
+        });
 
-    // Check if the bibtex has a URL
-    const url = data.url;
-    if (url) {
-      goToReferenceBtn.style.display = 'inline-block';
-      goToReferenceBtn.onclick = function() {
-        window.open(url, '_blank');
-      };
-    } else {
-      goToReferenceBtn.style.display = 'none';
-    }
-
-    modal.style.display = "block";
-  });
+        modalId.value = id;
+        modal.style.display = "block";
+    })
 });
 
-// Close the modal when the user clicks on <span> (x)
-closeModalButton.onclick = function() {
+// Close modal by clicking "x"
+closeModalButton.addEventListener("click", () => {
   modal.style.display = "none";
-};
+});
 
-// Close the modal when the user clicks anywhere outside of the modal
-window.onclick = function(event) {
-  if (event.target == modal) {
+// Close modal by clicking outside the window
+window.addEventListener("click", (event) => {
+  if (event.target === modal) {
     modal.style.display = "none";
   }
-};
+});
 
 // event for copy button
 copyButtons.forEach(button => {
