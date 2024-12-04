@@ -16,6 +16,8 @@ Bibtex app
 <br>
 <a href="/create_misc">Create misc</a>
 <br>
+<a href="/create_from_acm">Create from link</a>
+<br>
 <br>
 <div class="reference-buttons">
   <a href="/export" class="export-btn">Export all</a>
@@ -50,31 +52,30 @@ Bibtex app
       </div>
         <input type="hidden" name="bibtex_id" id="modal-bibtex-id">
         <button type="submit" class="submit-btn">Save</button>
+        <button type="button" id="go-to-reference-btn" class="submit-btn" style="display: none;">Go to reference</button>
     </form>
   </div>
 </div>
 
-<h3>Sort references by</h3>
-<div class="sort-buttons">
-  <form action="/label=0" method="get" style="margin-left: 10px;">
-    <button type="submit" class="submit-btn">A-Z</button>
-  </form>
-  <form action="/label=1" method="get" style="margin-left: 10px;">
-    <button type="submit" class="submit-btn">Z-A</button>
-  </form>
-  <form action="/creation_time=0" method="get" style="margin-left: 10px;">
-    <button type="submit" class="submit-btn">Created first</button>
-  </form>
-  <form action="/creation_time=1" method="get" style="margin-left: 10px;">
-    <button type="submit" class="submit-btn">Created last</button>
-  </form>
-  <form action="/modified_time=0" method="get" style="margin-left: 10px;">
-    <button type="submit" class="submit-btn">Earliest modified</button>
-  </form>
-  <form action="/modified_time=1" method="get" style="margin-left: 10px;">
-    <button type="submit" class="submit-btn">Last modified</button>
-  </form>
+<div class="sort-dropdown" style="margin: 10px;">
+  <label for="sort-options">Sort by:</label>
+  <select id="sort-options" onchange="handleSortChange(this.value)">
+    <option value="/label=0" {% if sort == 'label=0' %}selected{% endif %}>A-Z</option>
+    <option value="/label=1" {% if sort == 'label=1' %}selected{% endif %}>Z-A</option>
+    <option value="/creation_time=0" {% if sort == 'creation_time=0' %}selected{% endif %}>Created first</option>
+    <option value="/creation_time=1" {% if sort == 'creation_time=1' %}selected{% endif %}>Created last</option>
+    <option value="/modified_time=0" {% if sort == 'modified_time=0' %}selected{% endif %}>Earliest modified</option>
+    <option value="/modified_time=1" {% if sort == 'modified_time=1' %}selected{% endif %}>Last modified</option>
+    <option value="/year=0" {% if sort == 'year=0' %}selected{% endif %}>Year (oldest first)</option>
+    <option value="/year=1" {% if sort == 'year=1' %}selected{% endif %}>Year (newest first)</option>
+  </select>
 </div>
+<script>
+  function handleSortChange(value) {
+    window.location.href = value;
+  }
+</script>
+
 
 <h3>Sort by tags</h3>
 <div class="tags-block" id="filter-tags">
