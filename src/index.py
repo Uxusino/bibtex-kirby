@@ -7,6 +7,8 @@ ja se on saatavilla kaikista verkko-osoitteista (host="0.0.0.0").
 Debug-tila on päällä, mikä mahdollistaa virheiden ja muutosten 
 seurannan kehitysvaiheessa.
 """
+# random comment to test commits
+
 from app import app
 
 if __name__ == "__main__":
