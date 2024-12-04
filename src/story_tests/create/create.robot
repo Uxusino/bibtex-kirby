@@ -10,6 +10,7 @@ At start there are no bibtexs
     Go To  ${HOME_URL}
     Title Should Be  Bibtex app
     Page Should Contain  You don't have references yet.
+
 After adding a bibtex, there is one
     Go To  ${HOME_URL}
     Click Link  Create article
@@ -18,6 +19,7 @@ After adding a bibtex, there is one
     Input Text  journal  Journal about creating articles
     Input Text  year  2024
     Click Button  Create
+    Title Should Be  Bibtex app
     Page Should Contain  author: Dummy, A.
 
 Cannot add article from future
