@@ -85,6 +85,7 @@ User can add and delete non required fields
     Click Element    bibtex-title
     Input Text  doi  1000.0
     Click Button  Save
+    Wait For Condition    return document.readyState=="complete"
     Page Should Contain    1000.0
     Click Element    bibtex-title
     Input Text  doi  ${EMPTY}

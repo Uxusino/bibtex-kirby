@@ -18,4 +18,5 @@ User can update references
     Click Element    bibtex-title
     Input Text  title  Updating random articles.
     Click Button  Save
+    Wait For Condition    return document.readyState=="complete"
     Page Should Contain    Updating random articles.
