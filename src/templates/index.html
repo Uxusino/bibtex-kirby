@@ -127,7 +127,7 @@ Bibtex app
   
           <button class="copy-btn" data-bibtex='{{ bibtex | to_str }}'>Copy .bib</button>
           {% if bibtex.data.get('url') %}
-            <a class="export-btn" href="https://{{ bibtex.data.get('url') }}" target="_blank">Open URL</a>
+            <a id="url-btn" class="export-btn" href="https://{{ bibtex.data.get('url') }}" target="_blank">Open URL</a>
           {% endif %}
         </div>
   

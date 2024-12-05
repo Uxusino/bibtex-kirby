@@ -22,6 +22,7 @@ User can select and view references by a tag
     Input Text    year    2023
     Input Text    tags    not random, robot
     Click Button    Create
+    Wait For Condition    return document.readyState=="complete"
     Click Element    xpath=//div[@class='tag' and @data-tag='random'][1]
     Element Should Not Be Visible    xpath=//span[@class='bibtex-title' and @data-type='book']
 
@@ -276,3 +277,17 @@ User can navigate home from all pages
     Click Link  Create misc
     Click Element  xpath=//a[text()='Home']
     Page Should Contain  Create misc
+
+User can open a URL Link
+    Go To  ${HOME_URL}
+    Click Link  Create article
+    Input Text  title  Creating random repositories
+    Input Text  author  Dummy, G.
+    Input Text  journal  GitHub
+    Input Text  year  2024
+    Input Text    url    https://github.com/Uxusino/bibtex-kirby
+    Click Button    Create
+    Wait For Condition    return document.readyState=="complete"
+    ${href_value}=    Get Element Attribute    xpath=//a[@id='url-btn']    href
+    Log    Href Value: ${href_value}
+    Should Be Equal    ${href_value}    https://github.com/Uxusino/bibtex-kirby
