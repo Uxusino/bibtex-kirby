@@ -84,11 +84,17 @@ def parse_request(content: dict[str]) -> dict:
     """
     ref_type = content.get("type")
     tags_string = content.get("tags")
+
     if tags_string:
         tags = parse_tags(tags_string)
     else:
         tags = None
+
     data = {k: v for k, v in content.items() if v and k not in ["type", "tags"]}
+
+    if data.get("url"):
+        data["url"] = data["url"].replace("https://", "").replace("http://", "")
+
     try:
         validate_data(content)
     except Exception as error:
