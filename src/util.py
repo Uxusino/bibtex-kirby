@@ -101,14 +101,14 @@ def parse_request(content: dict[str]) -> dict:
         raise error
     label = generate_label(data)
 
-    new_bib = {
+    bib_entry = {
         "label": label,
         "type": ref_type,
         "data": data,
         "tags": tags
     }
 
-    return new_bib
+    return bib_entry
 
 def filter_bibtexs(bibtexs, query):
     return list(filter(lambda b: query.lower() in b.data["author"].lower()
