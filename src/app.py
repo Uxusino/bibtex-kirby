@@ -12,6 +12,7 @@ from db_helper import reset_db
 from repositories.bibtex_repository import bibtex_repository as repo
 from config import app, test_env
 from util import parse_request, filter_bibtexs, sort_bibtexs, UserInputError
+import requests
 
 # Filter to turn bibtexes to strings inside the template
 @app.template_filter('to_str')
@@ -83,10 +84,61 @@ def create_misc():
 def create_from_acm():
     return render_template("create_from_acm.html")
 
-# @app.route("/create_bibtex_from_link", methods=["POST"])
-# def create_bibtecx_from_link():
-#     acm_url = request.form.get("acm_link")
+@app.route("/create_bibtex_from_link", methods=["POST"])
+def create_bibtex_from_link():
+    """
+    Handles the creation of a new BibTeX entry from an ACM link.
+    Fetches data from the CrossRef API using the DOI, parses it, and saves it as a BibTeX entry.
+    """
+    acm_url = request.form.get("acm_url")
+    
+    try:
+        doi = acm_url.split("10.")[1]
+        doi = "10." + doi  
+    except IndexError:
+        flash("Invalid ACM URL format. Please ensure it contains a DOI.")
+        return redirect("/create_from_acm")
 
+    api_url = f"https://api.crossref.org/works/{doi}"
+    response = requests.get(api_url)
+    
+    if response.status_code != 200:
+        flash("Failed to fetch data from CrossRef API. Please try again.")
+        return redirect("/create_from_acm")
+    
+    data = response.json().get("message", {})
+
+    type_mapping = {
+        "monograph": "book",
+        "journal-article": "article",
+        "proceedings-article": "inproceedings",
+
+    }
+
+    bibtex_type = type_mapping.get(data.get("type", "misc"), "misc")
+    try:
+        parsed_data = {
+            "type": bibtex_type,
+            "title": data["title"][0],
+            "author": ", ".join(
+                f"{author['family']}, {author['given']}" for author in data["author"]
+            ),
+            "year": data["published"]["date-parts"][0][0],
+            "url": data.get("URL"),
+            "publisher": data.get("publisher", "Unknown Publisher"),
+            "tags": "ACM, CrossRef" 
+        }
+    except KeyError as e:
+        flash(f"Missing required data: {e}")
+        return redirect("/create_from_acm")
+
+    try:
+        new_bib = parse_request(parsed_data)
+        repo.create_bibtex(new_bib)
+        flash("BibTeX entry created successfully!")
+    except UserInputError as error:
+        flash(f"Error creating BibTeX entry: {error}")
+    return redirect("/")
 
 @app.route("/create_bibtex", methods=["POST"])
 def bibtex_creation():
