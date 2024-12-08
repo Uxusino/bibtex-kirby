@@ -111,22 +111,32 @@ def create_bibtex_from_link():
     type_mapping = {
         "monograph": "book",
         "journal-article": "article",
-        "proceedings-article": "inproceedings",
-
+        "proceedings-article": "inproceedings"
     }
 
     bibtex_type = type_mapping.get(data.get("type", "misc"), "misc")
+
+    authors = data.get("author")
+    if authors:
+        author_str = ", ".join(
+            f"{author['family']}, {author['given']}" for author in authors
+        )
+    elif "editor" in data:
+        author_str = ", ".join(
+            f"{editor['family']}, {editor['given']}" for editor in data["editor"]
+        )
+    else:
+        author_str = "Unknown Author"
+
     try:
         parsed_data = {
             "type": bibtex_type,
             "title": data["title"][0],
-            "author": ", ".join(
-                f"{author['family']}, {author['given']}" for author in data["author"]
-            ),
+            "author": author_str,
             "year": data["published"]["date-parts"][0][0],
             "url": data.get("URL"),
             "publisher": data.get("publisher", "Unknown Publisher"),
-            "tags": "ACM, CrossRef" 
+   
         }
     except KeyError as e:
         flash(f"Missing required data: {e}")
@@ -135,7 +145,6 @@ def create_bibtex_from_link():
     try:
         new_bib = parse_request(parsed_data)
         repo.create_bibtex(new_bib)
-        flash("BibTeX entry created successfully!")
     except UserInputError as error:
         flash(f"Error creating BibTeX entry: {error}")
     return redirect("/")
