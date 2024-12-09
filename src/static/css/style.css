@@ -1,5 +1,167 @@
+/* General button styles */
+button, .home-btn, .export-all-btn, .create-btn, .search-btn, a.export-all-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: #32254b;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;  /* Space below the buttons */
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  font-family: sans-serif;
+}
+
+button:hover, .home-btn:hover, .export-all-btn:hover, .create-btn:hover, .search-btn:hover, a.export-all-btn {
+  background-color: #f0f0f0;
+}
+
+/* Focus styles for buttons */
+button:focus, .home-btn:focus, .export-all-btn:focus, .create-btn:focus, .search-btn:focus, a.export-all-btn {
+  outline: none;
+  box-shadow: 0 0 0 2px #007bff;  /* Blue outline on focus */
+}
+
+/* Dropdown Menu Styles */
+select {
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  color: #32254b;
+  cursor: pointer;
+  width: 200px;
+  margin-top: 5px;
+}
+
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #007bff;  /* Blue outline on focus */
+  border-color: #007bff;  /* Change border color on focus */
+}
+
+option {
+  background-color: #ffffff;
+  color: #32254b;
+}
+
+option:hover {
+  background-color: #f0f0f0;  /* Light gray background on hover */
+}
+
+/* Add a label to the dropdown for better spacing */
+label[for="sort-options"], label[for="tags"] {
+  font-weight: bold;
+  color: #32254b;
+  margin-bottom: 5px;
+  display: inline-block;
+  font-size: 14px;
+}
+
+/* Search Input Styles */
+.search-input {
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  color: #32254b;
+  cursor: text;
+  width: 225px ;
+  margin-top: 5px;
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #007bff;  /* Blue outline on focus */
+  border-color: #007bff;  /* Change border color on focus */
+}
+
+
+/* Navbar styles */
+.navbar {
+  display: flex;  /* Enable Flexbox */
+  flex-direction: column;  /* Stack elements vertically */
+  align-items: stretch;  /* Ensure all child elements stretch to the same width */
+  padding: 20px;
+  background-color: #32254b;  /* Dark background */
+  border-right: 2px solid #ccc;  /* Right border for vertical navbar */
+  width: 250px;  /* Set a fixed width for the navbar */
+  height: 100vh;  /* Full height of the screen */
+  position: fixed;  /* Fix the navbar to the left side of the screen */
+  top: 0;  /* Align the navbar to the top */
+  left: 0;  /* Align the navbar to the left */
+  gap: 20px;  /* Add consistent spacing between items */
+}
+
+/* Reference buttons container */
+.reference-buttons {
+  display: flex;
+  flex-direction: column;  /* Stack buttons vertically */
+  gap: 10px;  /* Space between the buttons */
+  width: 100%;  /* Ensure buttons stretch to full width of navbar */
+  margin-bottom: 20px;  /* Space below the reference buttons */
+}
+
+/* Creating section */
+.create-section {
+  display: flex;
+  flex-direction: column;  /* Stack form elements vertically */
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.create-section form {
+  display: flex;
+  flex-direction: column; /* Stack the dropdown and button vertically */
+  gap: 15px; /* Add space between the dropdown and the button */
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;  /* Stack input and button vertically */
+  gap: 10px;
+  width: 100%;  /* Ensure form stretches to full width of navbar */
+}
+
+/* Sort dropdown styles */
+.sort-dropdown {
+  width: 100%;  /* Ensure dropdown takes full width */
+  margin-bottom: 20px;  /* Add consistent spacing */
+}
+
+.tags-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0;  /* Add vertical spacing */
+}
+
+/* Main content styling */
 body {
+  margin-left: 250px;  /* Offset the body content to the right of the navbar */
+  padding: 20px;
   background-color: #eeeeee;
+}
+
+/* Label for Sort and Filter (theme-aligned colors) */
+label[for="sort-options"], label[for="tags"] {
+  font-weight: bold;
+  color: #ffffff; /* Light text color to contrast the dark navbar background */
+  margin-bottom: 5px;
+  display: inline-block;
+  font-size: 14px;
+}
+
+/* Adjust the tags block for better integration */
+.tags-block label {
+  font-weight: bold;
+  color: #ffffff; /* Same light color for the "Filter by tags:" text */
+  margin-bottom: 10px;
 }
 
 .bibtex-list {
@@ -73,7 +235,7 @@ body {
   font-weight: bold;
 }
 
-.submit-btn, .copy-btn, .export-btn {
+.submit-btn, .copy-btn {
   display: block;
   width: 100px;
   padding: 10px;
@@ -87,7 +249,7 @@ body {
   text-decoration: none;
 }
 
-.export-btn:hover, .submit-btn:hover, .copy-btn:hover {
+.submit-btn:hover, .copy-btn:hover {
   background-color: #412d66;
 }
 
@@ -188,26 +350,11 @@ body {
   color: #fff;
 }
 
-.navbar {
-  background-color: #32254b;
-  padding: 10px;
-  text-align: left;
+.header {
+  margin-left: 10px; /* Reset the left margin */
+  padding-left: 20px; /* Optionally, add padding for alignment */
 }
 
-.home-btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #ffffff;
-  color: #32254b;
-  text-decoration: none;
-  border-radius: 4px;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.home-btn:hover {
-  background-color: #f0f0f0;
-}
 
 /* .delete-btn {
 } */

@@ -1,13 +1,9 @@
 {% extends "layout.html" %}
 
-{% block title %}
-Bibtex app
-{% endblock %}
 
 {% block body %}
 
-<h2>Bibtex app</h2>
-
+<div class="header">
 <h3>Create from ACM</h3>
 <body>
     <form action="/create_bibtex_from_link" method="POST">
@@ -17,4 +13,5 @@ Bibtex app
     </form>
     <a href="/">Cancel</a>
 </body>
+</div>
 {% endblock %}

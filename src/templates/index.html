@@ -6,40 +6,18 @@ Bibtex app
 
 {% block body %}
 
-<h2>Bibtex app</h2>
-<h3>Create a new reference:</h3>
-<a href="/create_article">Create article</a>
 <br>
-<a href="/create_book">Create book</a>
-<br>
-<a href="/create_inproceedings">Create inproceedings</a>
-<br>
-<a href="/create_misc">Create misc</a>
-<br>
-<a href="/create_from_acm">Create from link</a>
-<br>
-<br>
-<div class="reference-buttons">
-  <a href="/export" class="export-btn">Export all</a>
-  <button id="fetch-btn" class="submit-btn">Copy all</button>
-</div>
 
 {% if bibtexs == [] %}
-  <div>
+  <div class="header">
     You don't have references yet.
   </div>
   {% else %}
-    <div>
+    <div class="header">
     <h3>References:</h3>
     </div>
 
 <ul>
-
-<form action="/search" method="POST">
-  <p>Search:<br>
-  <input type="text" name="query"></p>
-  <input type="submit" value="Search">
-</form>
 
 
 <div id="modal" class="modal">
@@ -57,34 +35,8 @@ Bibtex app
   </div>
 </div>
 
-<div class="sort-dropdown" style="margin: 10px;">
-  <label for="sort-options">Sort by:</label>
-  <select id="sort-options" onchange="handleSortChange(this.value)">
-    <option value="/label=0" {% if sort == 'label=0' %}selected{% endif %}>A-Z</option>
-    <option value="/label=1" {% if sort == 'label=1' %}selected{% endif %}>Z-A</option>
-    <option value="/creation_time=0" {% if sort == 'creation_time=0' %}selected{% endif %}>Created first</option>
-    <option value="/creation_time=1" {% if sort == 'creation_time=1' %}selected{% endif %}>Created last</option>
-    <option value="/modified_time=0" {% if sort == 'modified_time=0' %}selected{% endif %}>Earliest modified</option>
-    <option value="/modified_time=1" {% if sort == 'modified_time=1' %}selected{% endif %}>Last modified</option>
-    <option value="/year=0" {% if sort == 'year=0' %}selected{% endif %}>Year (oldest first)</option>
-    <option value="/year=1" {% if sort == 'year=1' %}selected{% endif %}>Year (newest first)</option>
-  </select>
-</div>
-<script>
-  function handleSortChange(value) {
-    window.location.href = value;
-  }
-</script>
 
 
-<h3>Sort by tags</h3>
-<div class="tags-block" id="filter-tags">
-  {% for tag in tags %}
-    {% if tag %}
-      <div class="tag" data-tag='{{ tag }}'>{{ tag }}</div>
-    {% endif %}
-  {% endfor %}
-</div>
   
   <ul class="bibtex-list">
     {% for bibtex in bibtexs %}

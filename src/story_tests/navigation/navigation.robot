@@ -266,16 +266,16 @@ User can sort references by year
 User can navigate home from all pages
     Go To  ${HOME_URL}
     Click Link  Create article
-    Click Element  xpath=//a[text()='Home']
+    Click Link    xpath=//a[@class='home-btn']
     Page Should Contain  Create article
     Click Link  Create book
-    Click Element  xpath=//a[text()='Home']
+    Click Link    xpath=//a[@class='home-btn']
     Page Should Contain  Create book
     Click Link  Create inproceedings
-    Click Element  xpath=//a[text()='Home']
+    Click Link    xpath=//a[@class='home-btn']
     Page Should Contain  Create inproceedings
     Click Link  Create misc
-    Click Element  xpath=//a[text()='Home']
+    Click Link    xpath=//a[@class='home-btn']
     Page Should Contain  Create misc
 
 User can open a URL Link

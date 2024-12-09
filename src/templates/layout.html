@@ -11,9 +11,61 @@
   </head>
   <body>
     <div class="navbar">
-      {% if request.path != '/' %}
-      <a href="/" class="home-btn">Home</a>
-      {% endif %}
+      <!-- Home button-->
+      <a href="/" class="home-btn">Bibtex app</a>
+
+    {% if not request.path.startswith('/create') %}
+      <!-- Exporting -->
+      <div class="reference-buttons">
+        <a href="/export" class="export-all-btn">Export all</a>
+        <button id="fetch-btn" class="export-all-btn">Copy all</button>
+      </div>
+
+      <!-- Creating-->
+      <div class="create-section">
+        <a href="/create_article" class="create-btn">Create article</a>
+        <a href="/create_book" class="create-btn">Create book</a>
+        <a href="/create_inproceedings" class="create-btn">Create inproceedings</a>
+        <a href="/create_misc" class="create-btn">Create misc</a>
+        <a href="/create_from_acm" class="create-btn">Create from link</a>
+      </div>
+
+      <!-- Searching -->
+      <form action="/search" method="POST" class="search-form">
+        <input type="text" name="query" placeholder="Search..." class="search-input">
+        <button type="submit" class="search-btn">Search</button>
+      </form>
+
+      <!-- Sorting -->
+      <div class="sort-dropdown" style="margin: 10px;">
+        <label for="sort-options">Sort by:</label>
+        <select id="sort-options" onchange="handleSortChange(this.value)">
+          <option value="/label=0" {% if sort == 'label=0' %}selected{% endif %}>A-Z</option>
+          <option value="/label=1" {% if sort == 'label=1' %}selected{% endif %}>Z-A</option>
+          <option value="/creation_time=0" {% if sort == 'creation_time=0' %}selected{% endif %}>Created first</option>
+          <option value="/creation_time=1" {% if sort == 'creation_time=1' %}selected{% endif %}>Created last</option>
+          <option value="/modified_time=0" {% if sort == 'modified_time=0' %}selected{% endif %}>Earliest modified</option>
+          <option value="/modified_time=1" {% if sort == 'modified_time=1' %}selected{% endif %}>Last modified</option>
+          <option value="/year=0" {% if sort == 'year=0' %}selected{% endif %}>Year (oldest first)</option>
+          <option value="/year=1" {% if sort == 'year=1' %}selected{% endif %}>Year (newest first)</option>
+        </select>
+      </div>
+      <script>
+        function handleSortChange(value) {
+          window.location.href = value;
+        }
+      </script>
+
+    <!-- Sorting by tags-->
+    <div class="tags-block" id="filter-tags">
+      <label for="tags">Filter by tags:</label>
+      {% for tag in tags %}
+        {% if tag %}
+          <div class="tag" data-tag='{{ tag }}'>{{ tag }}</div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
     </div>
     {% block body %}{% endblock %}
   </body>
