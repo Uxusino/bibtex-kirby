@@ -8,7 +8,7 @@ button, .home-btn, .export-all-btn, .create-btn, .search-btn, a.export-all-btn {
   border-radius: 4px;
   font-size: 16px;
   font-weight: bold;
-  margin-bottom: 20px;  /* Space below the buttons */
+  margin-bottom: 5px;  /* Space below the buttons */
   cursor: pointer;
   border: none;
   text-align: left;
@@ -58,8 +58,8 @@ label[for="sort-options"], label[for="tags"] {
   font-weight: bold;
   color: #32254b;
   margin-bottom: 5px;
-  display: inline-block;
-  font-size: 14px;
+  display: flex;
+  font-size: 12px;
 }
 
 /* Search Input Styles */
@@ -87,7 +87,7 @@ label[for="sort-options"], label[for="tags"] {
   display: flex;  /* Enable Flexbox */
   flex-direction: column;  /* Stack elements vertically */
   align-items: stretch;  /* Ensure all child elements stretch to the same width */
-  padding: 20px;
+  padding: 15px;
   background-color: #32254b;  /* Dark background */
   border-right: 2px solid #ccc;  /* Right border for vertical navbar */
   width: 250px;  /* Set a fixed width for the navbar */
@@ -137,8 +137,8 @@ label[for="sort-options"], label[for="tags"] {
 .tags-block {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin: 10px 0;  /* Add vertical spacing */
+  gap: 5px;
+  margin: 5px 0;  /* Add vertical spacing */
 }
 
 /* Main content styling */
