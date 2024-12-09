@@ -95,7 +95,7 @@ label[for="sort-options"], label[for="tags"] {
   position: fixed;  /* Fix the navbar to the left side of the screen */
   top: 0;  /* Align the navbar to the top */
   left: 0;  /* Align the navbar to the left */
-  gap: 20px;  /* Add consistent spacing between items */
+  gap: 10px;  /* Add consistent spacing between items */
 }
 
 /* Reference buttons container */
@@ -111,7 +111,7 @@ label[for="sort-options"], label[for="tags"] {
 .create-section {
   display: flex;
   flex-direction: column;  /* Stack form elements vertically */
-  gap: 15px;
+  gap: 5px;
   margin-bottom: 20px;
 }
 
@@ -321,8 +321,8 @@ label[for="sort-options"], label[for="tags"] {
 .sort-buttons, .reference-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 5px;
+  margin-bottom: 5px;
 }
 
 .tags-block {
