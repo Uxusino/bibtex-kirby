@@ -3,7 +3,7 @@ Library  SeleniumLibrary
 
 *** Variables ***
 ${SERVER}     localhost:5001
-${DELAY}      0.5 seconds
+${DELAY}      0.1 seconds
 ${HOME_URL}   http://${SERVER}
 ${RESET_URL}  http://${SERVER}/reset_db
 ${BROWSER}    chrome
@@ -19,6 +19,7 @@ Open And Configure Browser
     IF  $HEADLESS == 'true'
         Set Selenium Speed  0
         Call Method  ${options}  add_argument  --headless
+        Call Method    ${options}    add_argument    --start-maximized
     ELSE
         Set Selenium Speed  ${DELAY}
     END

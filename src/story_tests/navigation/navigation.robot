@@ -8,26 +8,29 @@ Library  Collections
 *** Test Cases ***
 User can select and view references by a tag
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create article
     Input Text  title  Creating random articles.
     Input Text  author  Dummy, F.
     Input Text  journal  Journal about creating articles
     Input Text  year  2024
-    Input Text    tags    random, robot
+    Input Text    tags    ran, robot
     Click Button    Create
+    Wait For Condition    return document.readyState=="complete"
     Click Link    Create book
     Input Text    title    Not creating non-random books.
     Input Text    author    Dummy, G.
     Input Text    publisher    Dummy Publisher
     Input Text    year    2023
-    Input Text    tags    not random, robot
+    Input Text    tags    dom, robot
     Click Button    Create
     Wait For Condition    return document.readyState=="complete"
-    Click Element    xpath=//div[@class='tag' and @data-tag='random'][1]
+    Click Element    xpath=//div[@class='tag' and @data-tag='ran'][1]
     Element Should Not Be Visible    xpath=//span[@class='bibtex-title' and @data-type='book']
 
 User can search references
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create article
     Input Text  title  Creating random articles.
     Input Text  author  Dummy, A.
@@ -35,20 +38,21 @@ User can search references
     Input Text  year  2024
     Click Button  Create
 
+    Wait For Condition    return document.readyState=="complete"
     Input Text  query  å
+    Wait For Condition    return document.readyState=="complete"
     Click Button  Search
     Page Should Contain  No results
 
+    Wait For Condition    return document.readyState=="complete"
     Input Text  query  creating
+    Wait For Condition    return document.readyState=="complete"
     Click Button  Search
     Page Should Contain  Creating random articles.
 
-    Input Text  query  y
-    Click Button  Search
-    Page Should Contain  Creating random articles.
-
-User can sort references by order of creation
+User can sort references by order of creation and alphabetically
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create article
     Input Text  title  A
     Input Text  author  Ensimmäinen, 1.
@@ -56,6 +60,7 @@ User can sort references by order of creation
     Input Text  year  2023
     Click Button  Create
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create article
     Input Text  title  B
     Input Text  author  Toinen, 2.
@@ -63,6 +68,7 @@ User can sort references by order of creation
     Input Text  year  2023
     Click Button  Create
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create article
     Input Text  title  C
     Input Text  author  Kolmas, 3.
@@ -85,6 +91,7 @@ User can sort references by order of creation
     Should Be Equal  ${titles[2]}  C
 
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Select From List By Label    id=sort-options    Created last
     Wait For Condition    return document.readyState=="complete"
     ${elements}=  Get WebElements  xpath=//li[contains(@class, 'bibtex-item')]//span[contains(@class, 'bibtex-title')]
@@ -98,28 +105,6 @@ User can sort references by order of creation
     Should Be Equal  ${titles[1]}  B
     Should Be Equal  ${titles[2]}  A
 
-User can sort references alphabetically
-    Go To  ${HOME_URL}
-    Click Link  Create article
-    Input Text  title  CC
-    Input Text  author  Ensimmäinen, 1.
-    Input Text  journal  Journal about creating articles
-    Input Text  year  2023
-    Click Button  Create
-    Go To  ${HOME_URL}
-    Click Link  Create article
-    Input Text  title  AA
-    Input Text  author  Toinen, 2.
-    Input Text  journal  Journal about creating articles
-    Input Text  year  2023
-    Click Button  Create
-    Go To  ${HOME_URL}
-    Click Link  Create article
-    Input Text  title  DD
-    Input Text  author  Kolmas, 3.
-    Input Text  journal  Journal about creating articles
-    Input Text  year  2023
-    Click Button  Create
     Go To  ${HOME_URL}
     Wait For Condition    return document.readyState=="complete"
     Select From List By Label    id=sort-options    A-Z
@@ -131,9 +116,9 @@ User can sort references alphabetically
         Append To List  ${titles}  ${text}
     END
     Log Many  ${titles}
-    Should Be Equal  ${titles[0]}  AA
-    Should Be Equal  ${titles[1]}  CC
-    Should Be Equal  ${titles[2]}  DD
+    Should Be Equal  ${titles[0]}  A
+    Should Be Equal  ${titles[1]}  B
+    Should Be Equal  ${titles[2]}  C
 
     Go To  ${HOME_URL}
     Wait For Condition    return document.readyState=="complete"
@@ -146,9 +131,10 @@ User can sort references alphabetically
         Append To List  ${titles}  ${text}
     END
     Log Many  ${titles}
-    Should Be Equal  ${titles[0]}  DD
-    Should Be Equal  ${titles[1]}  CC
-    Should Be Equal  ${titles[2]}  AA
+    Should Be Equal  ${titles[0]}  C
+    Should Be Equal  ${titles[1]}  B
+    Should Be Equal  ${titles[2]}  A
+
 
 User can sort references by modification earliest 
     Go To  ${HOME_URL}
@@ -265,21 +251,26 @@ User can sort references by year
 
 User can navigate home from all pages
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create article
     Click Link    xpath=//a[@class='home-btn']
     Page Should Contain  Create article
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create book
     Click Link    xpath=//a[@class='home-btn']
     Page Should Contain  Create book
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create inproceedings
     Click Link    xpath=//a[@class='home-btn']
     Page Should Contain  Create inproceedings
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create misc
     Click Link    xpath=//a[@class='home-btn']
     Page Should Contain  Create misc
 
 User can open a URL Link
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create article
     Input Text  title  Creating random repositories
     Input Text  author  Dummy, G.

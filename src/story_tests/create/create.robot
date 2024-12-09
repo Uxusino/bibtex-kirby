@@ -8,42 +8,50 @@ Library  Collections
 *** Test Cases ***
 At start there are no bibtexs
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Title Should Be  Bibtex app
     Page Should Contain  You don't have references yet.
 
 After adding a bibtex, there is one
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create article
     Input Text  title  Creating random articles.
     Input Text  author  Dummy, A.
     Input Text  journal  Journal about creating articles
     Input Text  year  2024
     Click Button  Create
+    Wait For Condition    return document.readyState=="complete"
     Title Should Be  Bibtex app
     Page Should Contain  author: Dummy, A.
 
 Cannot add article from future
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create article
     Input Text  title  Creating random articles.
     Input Text  author  Dummy, D.
     Input Text  journal  Journal about creating articles
     Input Text  year  2025
     Click Button  Create
+    Wait For Condition    return document.readyState=="complete"
     Page Should Contain    Invalid year.
 
 User can create book
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create book
     Input Text  title  Creating random books.
     Input Text  author  Dummy, A Book.
     Input Text  publisher  Publisher about creating books
     Input Text  year  2024
     Click Button  Create
+    Wait For Condition    return document.readyState=="complete"
     Page Should Contain  author: Dummy, A Book.
 
 User can create inproceedings
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create inproceedings
     Input Text  title  Creating random inproceedings.
     Input Text  author  Dummy, A Inproceedings.
@@ -54,6 +62,7 @@ User can create inproceedings
 
 User can create misc
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create misc
     Input Text  title  Creating random misc.
     Input Text  author  Dummy, A Misc.
@@ -64,6 +73,7 @@ User can create misc
 
 User can add tags
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create article
     Input Text  title  Creating random articles.
     Input Text  author  Dummy, F.
@@ -76,6 +86,7 @@ User can add tags
 
 User can add and delete non required fields
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create article
     Input Text  title  Creating random articles.
     Input Text  author  Dummy, E.
@@ -94,22 +105,26 @@ User can add and delete non required fields
 
 User can create and copy .bib
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create article
     Input Text  title  moikka
     Input Text  author  moi
     Input Text  journal  1
     Input Text  year  2022
     Click Button  Create
+    Wait For Condition    return document.readyState=="complete"
     Click Button  Copy .bib
     Alert Should Be Present
 
 User can create and copy all references
     Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
     Click Link  Create article
     Input Text  title  Dummy Article
     Input Text  author  Dummy Author
     Input Text  journal  Dummy Journal
     Input Text  year  2024
     Click Button  Create
+    Wait For Condition    return document.readyState=="complete"
     Click Button  Copy all
     Alert Should Be Present
