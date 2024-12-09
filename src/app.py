@@ -7,12 +7,12 @@ Dependencies:
     config: Contains the Flask app configuration and environment settings.
     util: Contains utility functions, including request parsing.
 """
+import requests
 from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
 from repositories.bibtex_repository import bibtex_repository as repo
 from config import app, test_env
 from util import parse_request, filter_bibtexs, sort_bibtexs, UserInputError
-import requests
 
 # Filter to turn bibtexes to strings inside the template
 @app.template_filter('to_str')
@@ -91,21 +91,21 @@ def create_bibtex_from_link():
     Fetches data from the CrossRef API using the DOI, parses it, and saves it as a BibTeX entry.
     """
     acm_url = request.form.get("acm_url")
-    
+
     try:
         doi = acm_url.split("10.")[1]
-        doi = "10." + doi  
+        doi = "10." + doi
     except IndexError:
         flash("Invalid ACM URL format. Please ensure it contains a DOI.")
         return redirect("/create_from_acm")
 
     api_url = f"https://api.crossref.org/works/{doi}"
-    response = requests.get(api_url)
-    
+    response = requests.get(api_url, timeout=10)
+
     if response.status_code != 200:
         flash("Failed to fetch data from CrossRef API. Please try again.")
         return redirect("/create_from_acm")
-    
+
     data = response.json().get("message", {})
 
     type_mapping = {
@@ -136,7 +136,7 @@ def create_bibtex_from_link():
             "year": data["published"]["date-parts"][0][0],
             "url": data.get("URL"),
             "publisher": data.get("publisher", "Unknown Publisher"),
-   
+
         }
     except KeyError as e:
         flash(f"Missing required data: {e}")
