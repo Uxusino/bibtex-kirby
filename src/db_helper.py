@@ -16,7 +16,7 @@ Funktiot:
     Luo tietokantataulun, jos se ei ole olemassa, tai pudottaa ja luo sen uudelleen
     jos se on olemassa.
 """
-import os
+from os import getenv
 from sqlalchemy import text
 from dotenv import load_dotenv
 from config import db, app
@@ -24,7 +24,8 @@ from repositories.bibtex_repository import bibtex_repository as repo
 
 
 load_dotenv()
-DEMO_MODE = os.getenv('DEMO_MODE', 'False') == 'True'
+DEMO_MODE = getenv('DEMO_MODE', 'false').lower() == 'true'
+print(DEMO_MODE)
 TABLE_NAMES = ["bibtex", "tags"]
 
 def table_exists(name):
