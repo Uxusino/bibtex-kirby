@@ -1,0 +1,320 @@
+ {
+    "demo": [
+        {
+            "label": "bregler2007motion",
+            "type": "article",
+            "data": {
+                "title": "Motion Capture Technology for Entertainment [In the Spotlight]",
+                "author": "Bregler, Chris",
+                "journal": "IEEE Signal Processing Magazine",
+                "year": "2007",
+                "volume": "24",
+                "number": "6",
+                "pages": "160-158",
+                "doi": "10.1109/MSP.2007.906023"
+            },
+            "tags": ["motion capture"]
+        },
+        {
+            "label": "wasserman2018topological",
+            "type": "article",
+            "data": {
+                "title": "Topological Data Analysis",
+                "author": "Wasserman, Larry",
+                "journal": "Annual Review of Statistics and Its Application",
+                "year": "2018",
+                "volume": "5",
+                "number": "Volume 5, 2018",
+                "pages": "501-532",
+                "doi": "https://doi.org/10.1146/annurev-statistics-031017-100045",
+                "url": "www.annualreviews.org/content/journals/10.1146/annurev-statistics-031017-100045"
+            },
+            "tags": ["topology"]
+        },
+        {
+            "label": "dirafzoon2016action",
+            "type": "inproceedings",
+            "data": {
+                "title": "Action classification from motion capture data using topological data analysis",
+                "author": "Dirafzoon, Alireza and Lokare, Namita and Lobaton, Edgar",
+                "booktitle": "2016 IEEE Global Conference on Signal and Information Processing (GlobalSIP)",
+                "year": "2016",
+                "pages": "1260-1264",
+                "doi": "10.1109/GlobalSIP.2016.7906043"
+            },
+            "tags": ["motion capture", "topology"]
+        },
+        {
+            "label": "zhichao2018medicine",
+            "type": "article",
+            "data": {
+                "title": "A Novel Methodology for Extracting and Evaluating Therapeutic Movements in Game-Based Motion Capture Rehabilitation Systems.",
+                "author": "Zhichao Yang and Mohammad H. Rafiei and Alexis Hall and Caroline Thomas and Hali A. Midtlien and Alexander Hasselbach and Hojjat Adeli and Lynne V. Gauthier",
+                "journal": "J Med Syst",
+                "year": "2018",
+                "volume": "42",
+                "number": "255",
+                "doi": "https://doi.org/10.1007/s10916-018-1113-4"
+            },
+            "tags": ["motion capture"]
+        },
+        {
+            "label": "menache2000animation",
+            "type": "book",
+            "data": {
+                "title": "Understanding Motion Capture for Computer Animation and Video Games",
+                "author": "Menache, A.",
+                "publisher": "Academic",
+                "year": "2000",
+                "isbn": "9780124906303"
+            },
+            "tags": ["motion capture"]
+        },
+        {
+            "label": "field2009mocap",
+            "type": "inproceedings",
+            "data": {
+                "title": "Motion capture in robotics review",
+                "author": "Field, Matthew and Stirling, David and Naghdy, Fazel and Pan, Zengxi",
+                "booktitle": "2009 IEEE International Conference on Control and Automation",
+                "year": "2009",
+                "pages": "1697-1702"
+            },
+            "tags": ["motion capture"]
+        },
+        {
+            "label": "f2021har",
+            "type": "inproceedings",
+            "data": {
+                "title": "Computer Vision-based Survey on Human Activity Recognition System, Challenges and Applications",
+                "author": "F, Abdul Manaf and Singh, Sukhwinder",
+                "booktitle": "2021 3rd International Conference on Signal Processing and Communication (ICPSC)",
+                "year": "2021",
+                "pages": "110-114",
+                "doi": "10.1109/ICSPC51351.2021.9451736"
+            },
+            "tags": ["human activity recognition"]
+        },
+        {
+            "label": "mekruksavanich2023hybrid",
+            "type": "inproceedings",
+            "data": {
+                "title": "A Hybrid Deep Learning Neural Network for Recognizing Exercise Activity Using Inertial Sensor and Motion Capture System",
+                "author": "Mekruksavanich, Sakorn and Jantawong, Ponnipa and Jitpattanakul, Anuchit",
+                "booktitle": "2023 4th International Conference on Big Data Analytics and Practices (IBDAP)",
+                "year": "2023",
+                "pages": "1-5",
+                "doi": "10.1109/IBDAP58581.2023.10271955"
+            },
+            "tags": ["deep learning", "CNN", "LSTM", "motion capture", "human activity recognition"]
+        },
+        {
+            "label": "ijjina2015fuzzy",
+            "type": "inproceedings",
+            "data": {
+                "title": "Human action recognition based on motion capture information using fuzzy convolution neural networks",
+                "author": "Ijjina, Earnest Paul and Mohan, C Krishna",
+                "booktitle": "2015 Eighth International Conference on Advances in Pattern Recognition (ICAPR)",
+                "year": "2015",
+                "pages": "1-6",
+                "doi": "10.1109/ICAPR.2015.7050706"
+            },
+            "tags": ["deep learning", "CNN", "motion capture", "human activity recognition"]
+        },
+        {
+            "label": "hussain2022sensor",
+            "type": "article",
+            "data": {
+                "title": "Sensor-Based Gym Physical Exercise Recognition: Data Acquisition and Experiments",
+                "author": "Hussain, Afzaal and Zafar, Kashif and Baig, Abdul Rauf and Almakki, Riyad and AlSuwaidan, Lulwah and Khan, Shakir",
+                "journal": "Sensors",
+                "year": "2022",
+                "volume": "22",
+                "number": "7",
+                "url": "www.mdpi.com/1424-8220/22/7/2489",
+                "doi": "10.3390/s22072489"
+            },
+            "tags": ["human activity recognition"]
+        },
+        {
+            "label": "li2922cnn",
+            "type": "article",
+            "data": {
+                "title": "A Survey of Convolutional Neural Networks: Analysis, Applications, and Prospects",
+                "author": "Li, Zewen and Liu, Fan and Yang, Wenjie and Peng, Shouheng and Zhou, Jun",
+                "journal": "IEEE Transactions on Neural Networks and Learning Systems",
+                "year": "2022",
+                "volume": "33",
+                "number": "12",
+                "pages": "6999-7019"
+            },
+            "tags": ["CNN", "deep learning"]
+        },
+        {
+            "label": "hochreiter1997lstm",
+            "type": "article",
+            "data": {
+                "title": "Long Short-Term Memory",
+                "author": "Hochreiter, Sepp and Schmidhuber, Jürgen",
+                "journal": "Neural Computation",
+                "year": "1997",
+                "volume": "9",
+                "number": "8",
+                "pages": "1735-1780",
+                "doi": "10.1162/neco.1997.9.8.1735"
+            },
+            "tags": ["LSTM", "deep learning"]
+        },
+        {
+            "label": "jain1999RNN",
+            "type": "book",
+            "data": {
+                "title": "Recurrent Neural Networks: Design and Applications",
+                "author": "Jain, L. C. and Medsker, L. R.",
+                "publisher": "CRC Press, Inc.",
+                "year": "1999",
+                "isbn": "0849371813",
+                "address": "USA",
+                "edition": "1st"
+            },
+            "tags": ["deep learning", "RNN"]
+        },
+        {
+            "label": "dream2024humans",
+            "type": "misc",
+            "data": {
+                "title": "I added humans to Minecraft...",
+                "author": "Dream",
+                "howpublished": "YouTube",
+                "year": "2024",
+                "url": "youtu.be/YHGMfQ1TDPA?si=fkWRmkhWiGAh4Rpk"
+            },
+            "tags": ["motion capture", "human activity recognition"]
+        },
+        {
+            "label": "optitrack2000",
+            "type": "misc",
+            "data": {
+                "title": "OptiTrack - Optical Motion Capture Systems and Tracking Software",
+                "author": "OptiTrack",
+                "howpublished": "OptiTrack",
+                "year": "2000"
+            },
+            "tags": ["motion capture"]
+        },
+        {
+            "label": "zadeh1988fuzzy",
+            "type": "article",
+            "data": {
+                "title": "Fuzzy logic",
+                "author": "Zadeh, L.A",
+                "journal": "Computer",
+                "year": "1988",
+                "volume": "21",
+                "number": "4",
+                "pages": "83-93",
+                "doi": "10.1109/2.53"
+            },
+            "tags": []
+        },
+        {
+            "label": "zadeh1965fuzzy",
+            "type": "article",
+            "data": {
+                "title": "Fuzzy sets",
+                "author": "Zadeh, L.A",
+                "journal": "Information and Control",
+                "year": "1965",
+                "volume": "8",
+                "number": "3",
+                "pages": "338-353",
+                "doi": "https://doi.org/10.1016/S0019-9958(65)90241-X",
+                "url": "www.sciencedirect.com/science/article/pii/S001999586590241X"
+            },
+            "tags": []
+        },
+        {
+            "label": "meyer2001support",
+            "type": "article",
+            "data": {
+                "title": "Support vector machines",
+                "author": "Meyer, David and Wien, FT",
+                "journal": "R News",
+                "year": "2001",
+                "volume": "1",
+                "number": "3",
+                "pages": "23-26"
+            },
+            "tags": ["SVM"]
+        },
+        {
+            "label": "wang2009svm-mocap",
+            "type": "inproceedings",
+            "data": {
+                "title": "Recognition of Human Actions Using Motion Capture Data and Support Vector Machine",
+                "author": "Wang, Jung-Ying and Lee, Hahn-Ming",
+                "booktitle": "2009 WRI World Congress on Software Engineering",
+                "year": "2009",
+                "volume": "1",
+                "doi": "10.1109/WCSE.2009.354"
+            },
+            "tags": ["SVM", "human activity recognition", "motion capture"]
+        },
+        {
+            "label": "bengalur2013svm-mocap",
+            "type": "inproceedings",
+            "data": {
+                "title": "Human activity recognition using body pose features and support vector machine",
+                "author": "Bengalur, Megha D",
+                "booktitle": "2013 International Conference on Advances in Computing, Communications and Informatics (ICACCI)",
+                "year": "2013",
+                "pages": "1970-1975",
+                "doi": "10.1109/ICACCI.2013.6637484"
+            },
+            "tags": ["human activity recognition", "SVM", "motion capture"]
+        },
+        {
+            "label": "patrizi2016comparison",
+            "type": "article",
+            "data": {
+                "title": "Comparison between low-cost marker-less and high-end marker-based motion capture systems for the computer-aided assessment of working ergonomics",
+                "author": "Patrizi, Alfredo and Pennestrì, Ettore and Valentini, Pier Paolo",
+                "journal": "Ergonomics",
+                "year": "2016",
+                "volume": "59",
+                "number": "1",
+                "pages": "155-162",
+                "doi": "10.1080/00140139.2015.1057238",
+                "url": "doi.org/10.1080/00140139.2015.1057238"
+            },
+            "tags": ["motion capture"]
+        },
+        {
+            "label": "milgram2006oao",
+            "type": "inproceedings",
+            "data": {
+                "title": "``One Against One'' or ``One Against All'': Which One is Better for Handwriting Recognition with SVMs?",
+                "author": "Milgram, Jonathan and Cheriet, Mohamed and Sabourin, Robert",
+                "booktitle": "Tenth International Workshop on Frontiers in Handwriting Recognition",
+                "year": "2006",
+                "url": "inria.hal.science/inria-00103955"
+            },
+            "tags": ["SVM"]
+        },
+        {
+            "label": "chang2011libsvm",
+            "type": "article",
+            "data": {
+                "title": "LIBSVM: A library for support vector machines",
+                "author": "Chang, Chih-Chung and Lin, Chih-Jen",
+                "journal": "ACM Trans. Intell. Syst. Technol.",
+                "year": "2011",
+                "volume": "2",
+                "number": "3",
+                "url": "doi.org/10.1145/1961189.1961199",
+                "doi": "10.1145/1961189.1961199"
+            },
+            "tags": ["SVM"]
+        }
+    ]
+ }

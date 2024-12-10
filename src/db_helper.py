@@ -1,21 +1,4 @@
-"""
-Tämä moduuli tarjoaa apufunktioita tietokannan käsittelyyn.
-
-Funktiot:
-  table_exists(name):
-    Tarkistaa, onko tietokantataulu olemassa.
-    Parametrit:
-      name (str): Taulun nimi.
-    Palauttaa:
-      bool: True, jos taulu on olemassa, muuten False.
-
-  reset_db():
-    Tyhjentää tietokantataulun sisällön.
-
-  setup_db():
-    Luo tietokantataulun, jos se ei ole olemassa, tai pudottaa ja luo sen uudelleen
-    jos se on olemassa.
-"""
+import json
 from os import getenv
 from sqlalchemy import text
 from dotenv import load_dotenv
@@ -103,18 +86,15 @@ def setup_db():
 
   if DEMO_MODE:
     print("Demo mode on: creating bibtexs:")
-    for i in range(100):
-      print(f"{i+1}/100")
+    with open("demo_bibtexes.json", "r") as file:
+      references = json.loads(file.read())
+    for ref in references["demo"]:
+      print(f"{ref['label']}")
       repo.create_bibtex({
-        'label': f'd_m_{i+1}',
-        'type': 'article',
-        'data': {
-          'title': f'Demo {i+1}',
-          'author': 'Mr. Demo',
-          'journal': 'Demo.com',
-          'year': '2020'
-        },
-        'tags': None
+        'label': ref['label'],
+        'type': ref['type'],
+        'data': ref['data'],
+        'tags': ref['tags']
       })
     print("ready")
 
