@@ -18,7 +18,12 @@ Funktiot:
 """
 from sqlalchemy import text
 from config import db, app
+from repositories.bibtex_repository import bibtex_repository as repo
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+DEMO_MODE = os.getenv('DEMO_MODE', 'False') == 'True'
 TABLE_NAMES = ["bibtex", "tags"]
 
 def table_exists(name):
@@ -93,6 +98,23 @@ def setup_db():
 
     db.session.execute(sql)
     db.session.commit()
+
+  if DEMO_MODE:
+    print("Demo mode on: creating bibtexs:")
+    for i in range(100):
+      print(f"{i+1}/100")
+      repo.create_bibtex({
+        'label': f'd_m_{i+1}',
+        'type': 'article',
+        'data': {
+          'title': f'Demo {i+1}',
+          'author': 'Mr. Demo',
+          'journal': 'Demo.com',
+          'year': '2020'
+        },
+        'tags': None
+      })
+    print("ready")
 
 if __name__ == "__main__":
     with app.app_context():
