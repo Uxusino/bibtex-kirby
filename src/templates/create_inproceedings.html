@@ -91,6 +91,11 @@
   </div>
 
   <div class="form-group">
+    <label for="url">DOI</label>
+    <input type="text" name="doi" class="journal-input" value="{{ request.form.get('doi', '') }}">
+  </div>
+
+  <div class="form-group">
     <label for="url">Tags (divide by comma)</label>
     <input type="text" name="tags" class="journal-input" value="{{ request.form.get('tags', '') }}">
   </div>

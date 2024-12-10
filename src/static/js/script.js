@@ -19,7 +19,7 @@ const fields = {
   ],
   "inproceedings": ["title", "author", "booktitle", "year", "editor",
     "volume", "number", "series", "pages", "address", "month",
-    "organization", "publisher", "note"
+    "organization", "publisher", "note", "doi"
   ],
   "misc": ["title", "author", "howpublished", "year", "note", "key", "url"]
 };
