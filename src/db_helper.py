@@ -86,7 +86,7 @@ def setup_db():
 
   if DEMO_MODE:
     print("Demo mode on: creating bibtexs:")
-    with open("demo_bibtexes.json", "r") as file:
+    with open("demo_bibtexes.json", "r", encoding="utf-8") as file:
       references = json.loads(file.read())
     for ref in references["demo"]:
       print(f"{ref['label']}")
