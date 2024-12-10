@@ -96,6 +96,7 @@ label[for="sort-options"], label[for="tags"] {
   top: 0;  /* Align the navbar to the top */
   left: 0;  /* Align the navbar to the left */
   gap: 10px;  /* Add consistent spacing between items */
+  overflow: auto;
 }
 
 /* Reference buttons container */
