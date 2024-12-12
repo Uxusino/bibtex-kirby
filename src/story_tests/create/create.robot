@@ -128,3 +128,14 @@ User can create and copy all references
     Wait For Condition    return document.readyState=="complete"
     Click Button  Copy all
     Alert Should Be Present
+
+User can create a reference from ACM link
+    Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
+    Click Link    Create from link
+    Wait For Condition    return document.readyState=="complete"
+    Input Text    acm_url    https://dl.acm.org/doi/10.1145/965400.965567
+    Click Button    Submit
+    Go To  ${HOME_URL}
+    Wait For Condition    return document.readyState=="complete"
+    Page Should Contain    Grooming furry
