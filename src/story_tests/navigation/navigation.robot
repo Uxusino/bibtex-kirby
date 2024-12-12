@@ -45,7 +45,7 @@ User can search references
     Page Should Contain  No results
 
     Wait For Condition    return document.readyState=="complete"
-    Input Text  query  creating
+    Input Text  query  cr.ating
     Wait For Condition    return document.readyState=="complete"
     Click Button  Search
     Page Should Contain  Creating random articles.
@@ -194,7 +194,7 @@ User can sort references by modification earliest
     Should Be Equal  ${titles[1]}  First reference edited again
     Should Be Equal  ${titles[2]}  Third reference edited again
 
-User can sort references by year
+User can sort references by year and after that alphabetically
     Go To  ${HOME_URL}
     Click Link  Create article
     Input Text  title  b
