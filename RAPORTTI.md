@@ -6,13 +6,13 @@
 
 ## Kohdatut ongelmat
 
-Tiimimme kohtasi useita haasteita projektin aikana. Suurin osa ongelmista liittyi tietokannan arkkitehtuurin suunnitteluun ja sen yhteensopivuuteen backendin kanssa. PostgreSQL:n ja JSON-datan yhteiskäyttö vaati ylimääräistä tutkimista ja sopeutumista. Lisäksi backlogin hallinta oli aluksi hajanaista, ja jouduimme siirtymään uusiin alustoihin, jotta vaatimukset täyttyivät. Lopuksi tiimimme huomasi, että frontendin visuaalinen suunnittelu jäi sprintin loppuun, mikä toi lisäpainetta.
+Tiimimme kohtasi useita haasteita projektin aikana. Backlogin hallinta oli aluksi hajanaista, ja jouduimme siirtymään uusiin alustoihin, jotta vaatimukset täyttyivät. Lopuksi tiimimme huomasi, että frontendin visuaalinen suunnittelu jäi sprintin loppuun, mikä toi lisäpainetta.
 
 ---
 
 ## Prosessi
 
-Projektimme eteni iteratiivisesti sprinttiperusteisesti. Aluksi rakensimme Product Backlogin Google Spreadsheetiin ja Sprint Backlogin GitHubiin. Tehtävät jaettiin selkeästi, ja tiimimme jäsenet ottivat vastuuta omista osuuksistaan. Yhteistyö sujui pääasiassa tekstipohjaisesti, mutta käytimme myös lyhyitä ääni- ja tekstikeskusteluja ongelmien ratkaisuun. CI/CD-pipeline otettiin käyttöön tukemaan kehitystä ja testaus oli jatkuvasti mukana prosessissa.
+Projektimme eteni iteratiivisesti sprinttiperusteisesti. Aluksi rakensimme Product Backlogin Google Spreadsheetiin ja Sprint Backlogin GitHubiin. Tehtävät jaettiin selkeästi, ja tiimimme jäsenet ottivat vastuuta omista osuuksistaan. Yhteistyö sujui pääasiassa tekstipohjaisesti. CI/CD-pipeline otettiin käyttöön tukemaan kehitystä ja testaus oli jatkuvasti mukana prosessissa.
 
 ---
 
@@ -44,16 +44,14 @@ Tiimimme onnistui jakamaan työtehtävät tehokkaasti. Käyttöliittymän kehity
 - CI/CD-pipeline otettiin käyttöön, ja yksikkö- sekä robot-testejä luotiin kattavasti.  
 
 ### Teknisiin asioihin liittyvät ongelmat
-- Tietokannan ja SQLAlchemy-moduulin yhteensopivuusongelmat hidastivat kehitystä.  
-- Tietokannan projektihallintaominaisuus osoittautui ensimmäiseen sprinttiin ylimitoitetuksi tarpeeksi.  
+- Testit katosivat CI-palvelun osalta, vaikka meni lokaalisesti läpi, ja tähän oli vaikeaa löytää ratkaisun.
 
 ---
 
 ## Mikä sujui hyvin
 
 - Tiimimme viestintä ja työnjako toimivat erinomaisesti.  
-- Suunnitelmat etenivät johdonmukaisesti, ja suurin osa tehtävistä saatiin valmiiksi ajoissa.  
-- Backendin ja tietokannan integraatio onnistui odotuksia paremmin.  
+- Suunnitelmat etenivät johdonmukaisesti, ja suurin osa tehtävistä saatiin valmiiksi ajoissa.
 - CI/CD-työkalut varmistivat koodin laadun ja vähensivät virheiden määrää.  
 
 ---
@@ -82,4 +80,4 @@ Tiimimme onnistui jakamaan työtehtävät tehokkaasti. Käyttöliittymän kehity
 ## Mikä tuntui turhalta
 
 - Backlogin uudelleenjärjestely vei paljon aikaa, mikä olisi voitu käyttää kehitykseen.  
-- Tietokannan projektihallintaominaisuuden suunnittelu ei ollut olennaista ensimmäisessä sprintissä.  
+- Robot Frameworkin kanssa taisteleminen.
