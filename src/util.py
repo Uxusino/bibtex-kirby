@@ -111,9 +111,9 @@ def parse_request(content: dict[str]) -> dict:
     return bib_entry
 
 def filter_bibtexs(bibtexs, query):
-    return list(filter(lambda b: 
-                       re.search(query.lower(), b.data["author"].lower()) 
-                       or re.search(query.lower(), b.data["title"].lower()), 
+    return list(filter(lambda b:
+                       re.search(query.lower(), b.data["author"].lower())
+                       or re.search(query.lower(), b.data["title"].lower()),
                        bibtexs))
 
 def sort_bibtexs(bibtexs, sort, reverse):
