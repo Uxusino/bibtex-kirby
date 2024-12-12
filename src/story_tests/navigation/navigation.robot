@@ -194,7 +194,7 @@ User can sort references by modification earliest
     Should Be Equal  ${titles[1]}  First reference edited again
     Should Be Equal  ${titles[2]}  Third reference edited again
 
-User can sort references by year
+User can sort references by year and after that alphabetically
     Go To  ${HOME_URL}
     Click Link  Create article
     Input Text  title  b
