@@ -45,7 +45,7 @@ User can search references
     Page Should Contain  No results
 
     Wait For Condition    return document.readyState=="complete"
-    Input Text  query  creating
+    Input Text  query  cr.ating
     Wait For Condition    return document.readyState=="complete"
     Click Button  Search
     Page Should Contain  Creating random articles.

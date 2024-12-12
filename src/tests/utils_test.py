@@ -63,6 +63,28 @@ def test_filter_bibtexs():
     assert result[0].data['author'] == 'John Doe'
     assert result[1].data['author'] == 'John Smith'
 
+def test_filter_bibtexs_regex():
+    class MockBibtex:
+        def __init__(self, author, title):
+            self.data = {'author': author, 'title': title}
+
+    bibtexs = [
+        MockBibtex('John Doe', 'A Great Book'),
+        MockBibtex('Jane Doe', 'Another Book'),
+        MockBibtex('John Smith', 'Yet Another Book')
+    ]
+
+    result = filter_bibtexs(bibtexs, 'j.hn')
+    assert len(result) == 2
+    assert result[0].data['author'] == 'John Doe'
+    assert result[1].data['author'] == 'John Smith'
+
+    result2 = filter_bibtexs(bibtexs, '^Another')
+    assert len(result2) == 1
+    assert result2[0].data['author'] == 'Jane Doe'
+
+
+
 def test_sort_bibtexs():
     class MockBibtex:
         def __init__(self, title, year, creation_time):
