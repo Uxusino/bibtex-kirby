@@ -6,6 +6,7 @@
 * [Burndown Chart](https://docs.google.com/spreadsheets/d/1cU50iwuRWAjs2o86rISFNLVATdS2hZPp1eciziTLBD8/edit?gid=334129755#gid=334129755)
 * [Coverage](https://github.com/Uxusino/bibtex-kirby/blob/main/src/tests/coverage_ss_sprint3.jpg)
 * [CI-palvelu](https://github.com/Uxusino/bibtex-kirby/actions)
+* [Project Report](https://github.com/Uxusino/bibtex-kirby/blob/main/RAPORTTI.md)
 
 ## Setup
 
