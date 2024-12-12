@@ -251,11 +251,5 @@ def export():
 if test_env:
     @app.route("/reset_db")
     def reset_database():
-        """
-        Resets the database by calling the reset_db function and returns a JSON response.
-
-        Returns:
-            Response: A JSON response with a message indicating that the database has been reset.
-        """
         reset_db()
         return jsonify({ 'message': "db reset" })

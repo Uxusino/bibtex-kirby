@@ -1,18 +1,3 @@
-"""
-This module provides utility functions for validating and processing bibliographic data.
-Classes:
-    UserInputError(Exception): Custom exception for user input errors.
-Functions:
-    validate_data(content: dict):
-        Validates the 'year' field in the provided content dictionary.
-        Raises UserInputError if the year is invalid or not an integer.
-    generate_label(content: dict[str]) -> str:
-        Generates a unique label for the bibliographic entry based on the author's last name,
-        the first word of the title, and the year.
-    parse_request(content: dict[str]) -> dict:
-        Parses the request content, validates the data, generates a label, and returns a new
-        bibliographic entry dictionary containing the label, type, and data.
-"""
 from datetime import datetime
 import re
 import string
@@ -66,22 +51,6 @@ def parse_tags(tags_string: str) -> list[str]:
     return tags
 
 def parse_request(content: dict[str]) -> dict:
-    """
-    Parses a request dictionary to generate a new bibliography entry.
-
-    Args:
-        content (dict[str]): A dictionary containing the request data. 
-                             It should include a "type" key and other relevant data.
-
-    Returns:
-        dict: A dictionary representing the new bibliography entry with keys:
-              - "label": A generated label for the entry.
-              - "type": The type of the entry.
-              - "data": The filtered data from the input content.
-
-    Raises:
-        Exception: If the data validation fails.
-    """
     ref_type = content.get("type")
     tags_string = content.get("tags")
 
