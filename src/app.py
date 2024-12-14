@@ -247,7 +247,7 @@ def export():
     )
 
 
-# testausta varten oleva reitti
+# Path for testing purposes
 if test_env:
     @app.route("/reset_db")
     def reset_database():
