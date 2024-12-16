@@ -1,11 +1,11 @@
 """
-Tämä moduuli käynnistää Flask-sovelluksen.
+This module starts the Flask application.
 
-Moduuli tuo sovelluksen app-muuttujan app-moduulista ja käynnistää sen, 
-kun tiedosto suoritetaan pääohjelmana. Sovellus ajetaan portissa 5001 
-ja se on saatavilla kaikista verkko-osoitteista (host="0.0.0.0"). 
-Debug-tila on päällä, mikä mahdollistaa virheiden ja muutosten 
-seurannan kehitysvaiheessa.
+The module imports the app variable from the app module and starts it 
+when the file is run as the main program. The application runs on port 5001 
+and is accessible from all network addresses (host="0.0.0.0"). 
+Debug mode is enabled, which allows for error and change tracking 
+during the development phase.
 """
 
 from app import app
